@@ -1,6 +1,6 @@
 package gameoflife;
 
-import framework.world2d.GridPattern;
+import framework.universe2d.GridPattern;
 
 public class ToadPattern extends GridPattern<Boolean> {
     @Override

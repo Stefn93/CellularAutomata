@@ -9,14 +9,14 @@ import framework.universe.world.World;
  *
  * @param <CellType>
  */
-public abstract class SimulationThread<CellType> extends Thread {
+public class SimulationThread<CellType> extends Thread {
 	/**
 	 * Mondo 
 	 */
 	protected World<CellType> world;
 	protected WorldGui<CellType> gui;
 	private int generation = 0;
-	private int delay;
+	private int delay = 5000;
 	private boolean paused;
 	
 	public SimulationThread(World<CellType> world, WorldGui<CellType> gui) {
@@ -31,7 +31,6 @@ public abstract class SimulationThread<CellType> extends Thread {
 	}
 
 	
-	public abstract void start(Object startParam);
 	public void run() {
 		gui.showWorld(world);
 		while(!paused) {

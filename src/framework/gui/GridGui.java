@@ -1,19 +1,24 @@
 package framework.gui;
 
-import framework.world2d.Coordinates2D;
+import framework.universe.cell.Cell;
+import framework.universe.world.World;
+import framework.universe2d.Coordinates2D;
+import framework.universe2d.World2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 
-public class GridGui extends Pane{
+public class GridGui<T> extends Pane implements WorldGui<T>{
 	private Rectangle[][] rec;
+	private Drawer<T> drawer;
 	private double height;
 	private int n;
 	
 	
-	public GridGui(int n) 	{		
+	public GridGui(int n, Drawer<T> drawer) {
 		super();
+		this.drawer = drawer;
 		this.n = n;
 		rec = new Rectangle[n][n];
 		height = Screen.getPrimary().getVisualBounds().getHeight()/n;
@@ -31,8 +36,19 @@ public class GridGui extends Pane{
 	    }
 	}
 	
-	public void fillCell(Coordinates2D coord, Color color){
-		rec[coord.getX()][coord.getY()].setFill(color);
+	private void fillCell(Cell<T> cell, int x, int y){
+		rec[x][y].setFill(drawer.getColor(cell));
+	}
+
+	@Override
+	public void showWorld(World<T> world) {
+		World2D<T> w = (World2D<T>) world;
+		for (int x = 0; x < w.getDimensions().getLength(); x++) {
+			for (int y = 0; y < w.getDimensions().getHeight(); y++) {
+				fillCell(w.getCell(new Coordinates2D(x, y)), x, y);
+			}
+		}
+		
 	}
 }
 

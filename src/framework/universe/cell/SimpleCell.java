@@ -18,14 +18,14 @@ public class SimpleCell<T> implements Cell<T> {
  
     @Override
     public void revaluateCell(T value) {
-    	revaluated = false;
+    	setRevaluated(false);
         revaluatedValue = value;
     }
  
     @Override
     public void confirmRevaluation() {
     	if (!value.equals(revaluatedValue)) {
-    		revaluated = true;
+    		setRevaluated(true);
 	        value = revaluatedValue;
 	        revaluatedValue = null;
     	}
@@ -35,6 +35,14 @@ public class SimpleCell<T> implements Cell<T> {
 	@Override
 	public void setValue(T value) {
 		this.value = value;
+	}
+
+	public boolean isRevaluated() {
+		return revaluated;
+	}
+
+	public void setRevaluated(boolean revaluated) {
+		this.revaluated = revaluated;
 	}
  
 }

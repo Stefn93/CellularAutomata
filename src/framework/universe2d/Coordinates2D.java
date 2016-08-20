@@ -1,4 +1,4 @@
-package framework.world2d;
+package framework.universe2d;
 
 import framework.universe.cell.Coordinates;
 

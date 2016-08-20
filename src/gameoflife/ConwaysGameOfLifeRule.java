@@ -5,8 +5,8 @@ import framework.universe.cell.Cell;
 import framework.universe.cell.Coordinates;
 import framework.universe.cell.SimpleCell;
 import framework.universe.world.World;
-import framework.world2d.Coordinates2D;
-import framework.world2d.World2D;
+import framework.universe2d.Coordinates2D;
+import framework.universe2d.World2D;
 
 public class ConwaysGameOfLifeRule implements Behaviour<Boolean> {
      

@@ -1,8 +1,10 @@
-package framework.world2d;
+package framework.universe2d;
 
 import framework.simulation.Behaviour;
 import framework.universe.cell.Cell;
 import framework.universe.cell.Coordinates;
+import framework.universe.cell.Pattern;
+import framework.universe.cell.SimpleCell;
 import framework.universe.world.SimpleWorld;
 
 public abstract class World2D<CellType> extends SimpleWorld<CellType> {
@@ -21,6 +23,18 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
             }
         }
 	}
+
+    @Override
+    public void addPattern(Pattern pattern, Coordinates coordinates) {
+        @SuppressWarnings("unchecked")
+        CellType[][] patternValues = ((GridPattern<CellType>)pattern).get();
+        Coordinates2D gridCoordinates = ((Coordinates2D)coordinates);
+        for (int y = gridCoordinates.getY(); y < dimensions.getHeight() && y < gridCoordinates.getY() + patternValues.length; y++) {
+            for (int x = gridCoordinates.getX(); x < dimensions.getLength() && x < gridCoordinates.getX() + patternValues[0].length; x++) {
+                grid[y][x] = new SimpleCell<CellType>(patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
+            }
+        }
+    }
 	
 	@Override
 	public void nextState() {

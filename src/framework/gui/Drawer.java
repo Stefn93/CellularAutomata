@@ -1,5 +1,6 @@
 package framework.gui;
 
+import framework.universe.cell.Cell;
 import framework.universe.cell.SimpleCell;
 import javafx.scene.paint.Color;
 
@@ -12,5 +13,5 @@ import javafx.scene.paint.Color;
 public interface Drawer<T> {
 	public static Color DEAD = Color.BLACK;
 	
-	public Color getColor(SimpleCell<T> cell);
+	public Color getColor(Cell<T> cell);
 }
