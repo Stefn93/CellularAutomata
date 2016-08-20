@@ -1,6 +1,6 @@
 package framework.gui;
 
-import framework.worldmodel.World;
+import framework.universe.world.World;
 
 public interface WorldGui<T> {
     public void showWorld(World<T> world);

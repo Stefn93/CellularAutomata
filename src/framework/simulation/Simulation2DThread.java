@@ -1,7 +1,7 @@
 package framework.simulation;
 
 import framework.gui.WorldGui;
-import framework.worldmodel.World2D;
+import framework.world2d.World2D;
 
 public abstract class Simulation2DThread<CellType> extends SimulationThread<CellType>{
 	

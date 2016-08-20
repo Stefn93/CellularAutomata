@@ -1,6 +1,9 @@
-package framework.worldmodel;
+package framework.world2d;
 
 import framework.simulation.Behaviour;
+import framework.universe.cell.Cell;
+import framework.universe.cell.Coordinates;
+import framework.universe.world.SimpleWorld;
 
 public abstract class World2D<CellType> extends SimpleWorld<CellType> {
 

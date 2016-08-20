@@ -1,8 +1,8 @@
 package framework.simulation;
 
-import framework.worldmodel.Cell;
-import framework.worldmodel.Coordinates;
-import framework.worldmodel.World;
+import framework.universe.cell.Cell;
+import framework.universe.cell.Coordinates;
+import framework.universe.world.World;
 
 /**
  * 

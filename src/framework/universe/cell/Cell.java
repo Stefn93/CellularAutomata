@@ -1,4 +1,4 @@
-package framework.worldmodel;
+package framework.universe.cell;
 public interface Cell<T> {
     public T getValue();
     public void setValue(T value);

@@ -1,4 +1,4 @@
-package framework.worldmodel;
+package framework.universe.world;
 
 import framework.simulation.Behaviour;
 

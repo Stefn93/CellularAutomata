@@ -1,7 +1,7 @@
 package framework.gui;
 
-import framework.worldmodel.Coordinates;
-import framework.worldmodel.World;
+import framework.universe.cell.SimpleCell;
+import javafx.scene.paint.Color;
 
 /**
  * 
@@ -10,7 +10,7 @@ import framework.worldmodel.World;
  * @param <T>
  */
 public interface Drawer<T> {
-
-	public void redraw(World<T> grid, Coordinates coord);
-	public void redrawAll(World<T> grid, Coordinates coord);
+	public static Color DEAD = Color.BLACK;
+	
+	public Color getColor(SimpleCell<T> cell);
 }

@@ -1,7 +1,7 @@
 package framework.simulation;
 
 import framework.gui.WorldGui;
-import framework.worldmodel.World;
+import framework.universe.world.World;
 
 /**
  * Thread della simulazione vera

@@ -1,9 +1,9 @@
 package gameoflife;
 
 import framework.simulation.Behaviour;
-import framework.worldmodel.Cell;
-import framework.worldmodel.SimpleCell;
-import framework.worldmodel.World2D;
+import framework.universe.cell.Cell;
+import framework.universe.cell.SimpleCell;
+import framework.world2d.World2D;
 
 public class Boolean2DWorld extends World2D<Boolean> {
     public Boolean2DWorld(int height, int length, Behaviour<Boolean> rule) {

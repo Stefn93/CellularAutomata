@@ -1,4 +1,6 @@
-package framework.worldmodel;
+package framework.world2d;
+
+import framework.universe.cell.Coordinates;
 
 public class Coordinates2D implements Coordinates{
 

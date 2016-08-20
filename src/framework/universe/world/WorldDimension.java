@@ -1,4 +1,4 @@
-package framework.worldmodel;
+package framework.universe.world;
 
 public class WorldDimension {
 	private int length;

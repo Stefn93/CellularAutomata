@@ -1,4 +1,4 @@
-package framework.worldmodel;
+package framework.universe.cell;
 
 public class SimpleCell<T> implements Cell<T> {
  

@@ -1,12 +1,12 @@
 package gameoflife;
 
 import framework.simulation.Behaviour;
-import framework.worldmodel.Cell;
-import framework.worldmodel.Coordinates;
-import framework.worldmodel.Coordinates2D;
-import framework.worldmodel.SimpleCell;
-import framework.worldmodel.World;
-import framework.worldmodel.World2D;
+import framework.universe.cell.Cell;
+import framework.universe.cell.Coordinates;
+import framework.universe.cell.SimpleCell;
+import framework.universe.world.World;
+import framework.world2d.Coordinates2D;
+import framework.world2d.World2D;
 
 public class ConwaysGameOfLifeRule implements Behaviour<Boolean> {
      

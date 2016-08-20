@@ -1,4 +1,7 @@
-package framework.worldmodel;
+package framework.universe.world;
+
+import framework.universe.cell.Cell;
+import framework.universe.cell.Coordinates;
 
 public interface World<T> {
  

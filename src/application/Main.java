@@ -2,10 +2,7 @@ package application;
 	
 import java.io.IOException;
 
-
-
-
-
+import framework.gui.GridGui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Screen;
@@ -31,7 +28,7 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));
             root = (GridPane) loader.load();
             
-            root.getChildren().add(0, makeGrid(80));
+            root.getChildren().add(0, new GridGui(80));
             
             // Show the scene containing the root layout.
             Scene scene = new Scene(root);
@@ -46,26 +43,6 @@ public class Main extends Application {
         }
 	}
 	
-	public static Pane makeGrid(int n){
-		
-	    Pane p = new Pane();
-	    Rectangle[][] rec = new Rectangle[n][n];
-	    double height = Screen.getPrimary().getVisualBounds().getHeight()/n;
-
-	    for(int i=0; i<n; i++){
-	        for(int j=0; j<n; j++){
-	            rec[i][j] = new Rectangle();
-	            rec[i][j].setX(i * height);
-	            rec[i][j].setY(j * height);
-	            rec[i][j].setWidth(height);
-	            rec[i][j].setHeight(height);
-	            rec[i][j].setFill(null);
-	            rec[i][j].setStroke(Color.BLACK);
-	            p.getChildren().add(rec[i][j]);
-	        }
-	    }
-	    return p;
-	}
 	
 	public static void main(String[] args) {
 		launch(args);
