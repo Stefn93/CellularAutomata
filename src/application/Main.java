@@ -2,11 +2,18 @@ package application;
 	
 import java.io.IOException;
 
+
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 
 public class Main extends Application {
@@ -28,6 +35,28 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+	}
+	
+	public static Pane makeGrid(int n){
+	    //double width = .SCREEN_SIZE/n;
+	    Pane p = new Pane();
+	    double heigth = Screen.getPrimary().getVisualBounds().getHeight();
+
+	    Rectangle [][] rec = new Rectangle [n][n];
+
+	    for(int i=0; i<n; i++){
+	        for(int j=0; j<n; j++){
+	            rec[i][j] = new Rectangle();
+	            rec[i][j].setX(i * heigth);
+	            rec[i][j].setY(j * heigth);
+	            rec[i][j].setWidth(heigth);
+	            rec[i][j].setHeight(heigth);
+	            rec[i][j].setFill(null);
+	            rec[i][j].setStroke(Color.BLACK);
+	            p.getChildren().add(rec[i][j]);
+	        }
+	    }
+	    return p;
 	}
 	
 	public static void main(String[] args) {
