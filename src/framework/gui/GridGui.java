@@ -4,6 +4,8 @@ import framework.universe.cell.Cell;
 import framework.universe.world.World;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.World2D;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -34,6 +36,11 @@ public class GridGui<T> extends Pane implements WorldGui<T>{
 	            getChildren().add(rec[i][j]);
 	        }
 	    }
+	    
+	}
+	
+	public double getScreenHeight(){
+		return height;
 	}
 	
 	private void fillCell(Cell<T> cell, int x, int y){

@@ -2,25 +2,24 @@ package application;
 	
 import java.io.IOException;
 
-import framework.gui.Drawer;
 import framework.gui.GridGui;
-import framework.gui.WorldGui;
 import framework.simulation.SimulationThread;
-import framework.universe.world.World;
+import framework.universe2d.Coordinates2D;
 import gameoflife.Boolean2DWorld;
 import gameoflife.ConwaysGameOfLifeRule;
 import gameoflife.GOLDrawer;
+import gameoflife.ToadPattern;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.scene.Node;
+import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 
 public class Main extends Application {
@@ -32,10 +31,13 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			World<Boolean> world = new Boolean2DWorld(80, 80, new ConwaysGameOfLifeRule());
-			WorldGui<Boolean> gui = new GridGui<Boolean>(80, new GOLDrawer());
+			Boolean2DWorld world = new Boolean2DWorld(80, 80, new ConwaysGameOfLifeRule());
+			GridGui<Boolean> gui = new GridGui<Boolean>(80, new GOLDrawer());
+			addCloseListener(primaryStage);
+			setMouseListener(gui, world);
 			simulation = new SimulationThread<Boolean>(world, gui);
-            // Load root layout from fxml file.
+            world.addPattern(new ToadPattern(), new Coordinates2D(30, 30));
+			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));
             root = (GridPane) loader.load();
@@ -49,6 +51,7 @@ public class Main extends Application {
             primaryStage.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
             primaryStage.setResizable(false);
             primaryStage.show();
+
             simulation.start();
             
         } catch (IOException e) {
@@ -56,7 +59,28 @@ public class Main extends Application {
         }
 	}
 	
+	private void addCloseListener(Stage primaryStage) {
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+	}
 	
+	private void setMouseListener(GridGui<Boolean> gui, Boolean2DWorld world) {
+	    gui.setOnMouseDragged(new EventHandler<MouseEvent>() {
+	    	public void handle(MouseEvent m) {
+	    		double x = m.getX();
+	    		double y = m.getY();
+	    		
+	    		int colX = (int) (x/gui.getScreenHeight());
+	    		int colY = (int) (y/gui.getScreenHeight());
+	    		world.addPattern(new ToadPattern(), new Coordinates2D(colX, colY));
+	    	}
+	    });
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}

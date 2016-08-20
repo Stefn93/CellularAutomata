@@ -12,13 +12,13 @@ public class GOLDrawer implements Drawer<Boolean>{
 	private HashMap<Boolean, Color> map = new HashMap<Boolean, Color>();
 	
 	public GOLDrawer() {
-		map.put(true, Color.RED);
+		//map.put(null, DEAD);
+		map.put(true, Color.DARKCYAN);
 		map.put(false, DEAD);
 	}
 	
 	@Override
 	public Color getColor(Cell<Boolean> cell) {
-		System.out.println(cell.getValue());
 		return map.get(cell.getValue());
 	}
 }

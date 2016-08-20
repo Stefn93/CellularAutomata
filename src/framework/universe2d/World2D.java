@@ -31,7 +31,7 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
         Coordinates2D gridCoordinates = ((Coordinates2D)coordinates);
         for (int y = gridCoordinates.getY(); y < dimensions.getHeight() && y < gridCoordinates.getY() + patternValues.length; y++) {
             for (int x = gridCoordinates.getX(); x < dimensions.getLength() && x < gridCoordinates.getX() + patternValues[0].length; x++) {
-                grid[y][x] = new SimpleCell<CellType>(patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
+                grid[x][y].setValue(patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
             }
         }
     }
@@ -40,7 +40,7 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
 	public void nextState() {
 		for (int i = 0; i < dimensions.getLength(); i++) {
 			for (int j = 0; j < dimensions.getHeight(); j++) {
-				behaviour.calculateNewValue(this, new Coordinates2D(i, j));
+				grid[i][j].revaluateCell(behaviour.calculateNewValue(this, new Coordinates2D(i, j)));
 			}
 		}
 		for (int i = 0; i < dimensions.getLength(); i++) {
