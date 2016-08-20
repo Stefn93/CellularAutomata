@@ -1,6 +1,6 @@
 package framework.simulation;
 
-import framework.gui.CAGUI;
+import framework.gui.WorldGui;
 import framework.worldmodel.World;
 
 /**
@@ -14,27 +14,54 @@ public abstract class SimulationThread<CellType> extends Thread {
 	 * Mondo 
 	 */
 	protected World<CellType> world;
-	protected Behaviour<CellType> behaviour;
-	protected CAGUI<CellType> gui;
+	protected WorldGui<CellType> gui;
+	private int generation = 0;
+	private int delay;
+	private boolean paused;
 	
-	
-	public SimulationThread(World<CellType> world, Behaviour<CellType> behaviour, CAGUI<CellType> gui) {
+	public SimulationThread(World<CellType> world, WorldGui<CellType> gui) {
 		this.world = world;
-		this.behaviour = behaviour;
 		this.gui = gui;
 	}
 	
 	protected void incrementGeneration(){
-		world.setGeneration(world.getGeneration() + 1);
+		generation++;
 		world.nextState();
-		
+		gui.showWorld(world);
 	}
 
 	
 	public abstract void start(Object startParam);
+	public void run() {
+		gui.showWorld(world);
+		while(!paused) {
+			try {
+				SimulationThread.sleep(delay);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			incrementGeneration();
+		}
+	}
+	
+	public void setDelay(int delay) {
+		this.delay = delay;
+	}
+	
+	public int getDelay() {
+		return delay;
+	}
 	
 	public World<CellType> getWorld() {
 		return world;
+	}
+
+	public boolean isPaused() {
+		return paused;
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
 	}
 
 }

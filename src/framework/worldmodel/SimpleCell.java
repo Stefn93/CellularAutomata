@@ -31,10 +31,6 @@ public class SimpleCell<T> implements Cell<T> {
     	}
     }
 
-	@Override
-	public boolean isRevaluated() {
-		return revaluated;
-	}
 
 	@Override
 	public void setValue(T value) {

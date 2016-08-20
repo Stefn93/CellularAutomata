@@ -1,5 +1,7 @@
 package framework.simulation;
 
+import framework.worldmodel.Cell;
+import framework.worldmodel.Coordinates;
 import framework.worldmodel.World;
 
 /**
@@ -8,6 +10,6 @@ import framework.worldmodel.World;
  * @param <CellType> tipo di cellula
  */
 public interface Behaviour<CellType> {
-    //public CellType calculateNewValue(CellType currentValue, World<CellType> grid, Coordinates coordinates);
-    public void calculateGrid(World<CellType> grid);
+    public CellType calculateNewValue(World<CellType> grid, Coordinates coordinates);
+    public void calculateGrid(CellType value, World<CellType> world, Coordinates coordinates);
 }
