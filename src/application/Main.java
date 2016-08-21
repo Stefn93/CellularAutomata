@@ -33,8 +33,6 @@ public class Main extends Application {
 		try {
 			Boolean2DWorld world = new Boolean2DWorld(80, 80, new ConwaysGameOfLifeRule());
 			GridGui<Boolean> gui = new GridGui<Boolean>(80, new GOLDrawer());
-			addCloseListener(primaryStage);
-			setMouseListener(gui, world);
 			simulation = new SimulationThread<Boolean>(world, gui);
             world.addPattern(new ToadPattern(), new Coordinates2D(30, 30));
 			// Load root layout from fxml file.
@@ -44,6 +42,9 @@ public class Main extends Application {
             
             root.getChildren().add(0, (Pane) gui);
             
+            // Listeners
+            addCloseListener(primaryStage);
+            setMouseListener(gui, world);
             // Show the scene containing the root layout.
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
