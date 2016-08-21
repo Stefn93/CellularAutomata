@@ -23,12 +23,12 @@ public class GridGui<T> extends Pane implements WorldGui<T>{
 		this.drawer = drawer;
 		this.n = n;
 		rec = new Rectangle[n][n];
-		height = Screen.getPrimary().getVisualBounds().getHeight()/n;
+		height = 690/n;
 	    for(int i=0; i<n; i++){
 	        for(int j=0; j<n; j++){
 	            rec[i][j] = new Rectangle();
-	            rec[i][j].setX(i * height);
-	            rec[i][j].setY(j * height);
+	            rec[i][j].setX((i + 2) * height);
+	            rec[i][j].setY((j + 5) * height);
 	            rec[i][j].setWidth(height);
 	            rec[i][j].setHeight(height);
 	            rec[i][j].setFill(Color.BLACK);

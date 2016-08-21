@@ -2,6 +2,7 @@ package application;
 	
 import java.io.IOException;
 
+import controllerGUI.SimulationGridController;
 import framework.gui.GridGui;
 import framework.simulation.SimulationThread;
 import framework.universe2d.Coordinates2D;
@@ -26,30 +27,33 @@ public class Main extends Application {
 	
 	private GridPane root;
 	private SimulationThread<Boolean> simulation;
-	
+	private SimulationGridController controller;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Boolean2DWorld world = new Boolean2DWorld(80, 80, new ConwaysGameOfLifeRule());
-			GridGui<Boolean> gui = new GridGui<Boolean>(80, new GOLDrawer());
+			Boolean2DWorld world = new Boolean2DWorld(70, 70, new ConwaysGameOfLifeRule());
+			GridGui<Boolean> gui = new GridGui<Boolean>(70, new GOLDrawer());
 			simulation = new SimulationThread<Boolean>(world, gui);
             world.addPattern(new ToadPattern(), new Coordinates2D(30, 30));
+            
+            controller = new SimulationGridController();
 			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));
             root = (GridPane) loader.load();
+            root.add((Pane) gui, 0, 0);            
             
-            root.getChildren().add(0, (Pane) gui);
-            
+            controller.setSimulation(simulation);
             // Listeners
             addCloseListener(primaryStage);
             setMouseListener(gui, world);
+            
             // Show the scene containing the root layout.
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setWidth(Screen.getPrimary().getVisualBounds().getWidth());
-            primaryStage.setHeight(Screen.getPrimary().getVisualBounds().getHeight());
+            primaryStage.setWidth(1024);
+            primaryStage.setHeight(800);
             primaryStage.setResizable(false);
             primaryStage.show();
 
@@ -82,9 +86,9 @@ public class Main extends Application {
 	    	}
 	    });
 	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
-
-
+	
 }
