@@ -16,7 +16,7 @@ public class SimulationThread<CellType> extends Thread {
 	protected World<CellType> world;
 	protected WorldGui<CellType> gui;
 	private int generation = 0;
-	private int delay = 100;
+	private int delay = 1500;
 	private boolean paused;
 	
 	public SimulationThread(World<CellType> world, WorldGui<CellType> gui) {
