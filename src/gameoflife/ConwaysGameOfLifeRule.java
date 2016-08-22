@@ -15,7 +15,7 @@ public class ConwaysGameOfLifeRule implements Behaviour<Boolean> {
     @Override
     public Boolean calculateNewValue(World<Boolean> world, Coordinates coordinates) {
         Coordinates2D gridCoordinates = (Coordinates2D)coordinates;
-        World2D<Boolean> gridWorld = (Boolean2DWorld) world;
+        World2D<Boolean> gridWorld = (GOLWorld) world;
         int sum = (getUpperNeighbor(gridWorld, gridCoordinates).getValue() ? 1 : 0) + (getLowerNeighbor(gridWorld, gridCoordinates).getValue() ? 1 : 0)
                 + (getLeftNeighbor(gridWorld, gridCoordinates).getValue() ? 1 : 0) + (getRightNeighbor(gridWorld, gridCoordinates).getValue() ? 1 : 0)
                 + (getUpperLeftNeighbor(gridWorld, gridCoordinates).getValue() ? 1 : 0) + (getUpperRightNeighbor(gridWorld, gridCoordinates).getValue() ? 1 : 0)

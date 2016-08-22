@@ -16,7 +16,7 @@ public class SimulationThread<CellType> extends Thread {
 	protected World<CellType> world;
 	protected WorldGui<CellType> gui;
 	private int generation = 0;
-	private int delay = 1500;
+	private int delay = 100;
 	private boolean paused;
 	
 	public SimulationThread(World<CellType> world, WorldGui<CellType> gui) {
@@ -25,21 +25,23 @@ public class SimulationThread<CellType> extends Thread {
 	}
 	
 	protected void incrementGeneration(){
+		gui.showWorld(world);
 		generation++;
 		world.nextState();
-		gui.showWorld(world);
 	}
 
 	
 	public void run() {
-		gui.showWorld(world);
-		while(!paused) {
+		//gui.showWorld(world);
+		while(true) {
 			try {
-				SimulationThread.sleep(delay);
+				if (!paused) {
+					SimulationThread.sleep(delay);
+					incrementGeneration();
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			incrementGeneration();
 		}
 	}
 	
@@ -63,4 +65,10 @@ public class SimulationThread<CellType> extends Thread {
 		this.paused = paused;
 	}
 
+	
+	public void reset() {
+		paused = false;
+		generation = 0;
+		world.reset();
+	}
 }

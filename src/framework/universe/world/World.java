@@ -11,5 +11,6 @@ public interface World<T> {
     public int getGeneration();
     public WorldDimension getDimensions();
     public void addPattern(Pattern pattern, Coordinates coordinates);
+	public void reset();
 
 }

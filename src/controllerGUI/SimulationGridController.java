@@ -35,10 +35,10 @@ public class SimulationGridController implements Initializable{
     }
     
     private void restartListener(){
-    	start.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+    	restart.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
     		@Override
     		public void handle(MouseEvent e){
-    			simulation.start();
+    			simulation.reset();
     		}
     	});
     }
@@ -47,7 +47,7 @@ public class SimulationGridController implements Initializable{
     	start.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
     		@Override
     		public void handle(MouseEvent e){
-    			simulation.start();
+    			simulation.setPaused(!simulation.isPaused());
     		}
     	});
     }

@@ -22,6 +22,7 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
                 grid[y][x] = createNewCell();
             }
         }
+        defaultState();
 	}
 
     @Override
@@ -31,7 +32,8 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
         Coordinates2D gridCoordinates = ((Coordinates2D)coordinates);
         for (int y = gridCoordinates.getY(); y < dimensions.getHeight() && y < gridCoordinates.getY() + patternValues.length; y++) {
             for (int x = gridCoordinates.getX(); x < dimensions.getLength() && x < gridCoordinates.getX() + patternValues[0].length; x++) {
-                grid[x][y].setValue(patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
+            	if (y > dimensions.getHeight() || y < 0 || x < 0 || x > dimensions.getLength()) continue;
+            	grid[x][y].setValue(patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
             }
         }
     }
@@ -61,8 +63,13 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
 	}
 	
     protected abstract Cell<CellType> createNewCell();
-
-
+    protected abstract void clear();
+    protected abstract void defaultState();
+    
+    public void reset() {
+    	clear();
+    	defaultState();
+    }
 
 
 }
