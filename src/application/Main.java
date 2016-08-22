@@ -2,7 +2,7 @@ package application;
 	
 import java.io.IOException;
 
-import controllerGUI.SimulationGridController;
+import controllerGUI.SimulationController;
 import framework.gui.GridGui;
 import framework.simulation.SimulationThread;
 import framework.universe2d.Coordinates2D;
@@ -29,16 +29,13 @@ import javafx.scene.layout.Pane;
 public class Main extends Application {
 	
 	private GridPane root;
-	private SimulationThread<Boolean> simulation;
-	private SimulationGridController controller;
+	private SimulationController controller;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			GOLWorld world = new GOLWorld(70, 70, new ConwaysGameOfLifeRule());
 			GridGui<Boolean> gui = new GridGui<Boolean>(70, new GOLDrawer());
-			simulation = new SimulationThread<Boolean>(world, gui);
-            
 			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));
@@ -46,7 +43,7 @@ public class Main extends Application {
             root.add((Pane) gui, 0, 0);            
             GridPane.setMargin(gui, new Insets(40, 0, 0, 40));
             controller = loader.getController();
-            controller.setSimulation(simulation);
+            controller.setSimulation(new SimulationThread<Boolean>(world, gui));
             // Listeners
             addCloseListener(primaryStage);
             setMouseListener(gui, world);
@@ -59,7 +56,6 @@ public class Main extends Application {
             primaryStage.setResizable(false);
             primaryStage.show();
 
-            simulation.start();
             
         } catch (IOException e) {
             e.printStackTrace();

@@ -9,10 +9,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 
-public class SimulationGridController implements Initializable{
+public class SimulationController implements Initializable{
 
     @FXML 
     private Button restart;
@@ -20,11 +22,16 @@ public class SimulationGridController implements Initializable{
     private Button start;
     @FXML
     private Slider delay;
+    @FXML
+    private Label generationLabel;
+    @FXML
+    private ChoiceBox<String> patternchoice; 
 
 	private SimulationThread<Boolean> simulation;
 	
 	public void setSimulation(SimulationThread<Boolean> simulation){
 		this.simulation = simulation;
+		simulation.start();
 	}
 
     @Override // This method is called by the FXMLLoader when initialization is complete

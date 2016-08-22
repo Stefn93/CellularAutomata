@@ -29,6 +29,10 @@ public class SimulationThread<CellType> extends Thread {
 		generation++;
 		world.nextState();
 	}
+	
+	public int getGeneration() {
+		return generation;
+	}
 
 	
 	public void run() {
