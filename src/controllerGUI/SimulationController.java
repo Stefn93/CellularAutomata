@@ -37,7 +37,11 @@ public class SimulationController implements Initializable{
 		this.simulation = simulation;
 		this.simulation.setGuiController(this);
 		ObservableList list = FXCollections.observableArrayList(simulation.getPatterns());
-		patternChoice.setItems(list);				
+		patternChoice.setItems(list);	
+		if(patternChoice.getItems().size() > 0){
+    		patternChoice.getSelectionModel().selectFirst();
+    		simulation.getGui().setMouseListener(patternChoice.getSelectionModel().getSelectedItem());
+    	}
 		this.simulation.start();
 	}
 
