@@ -9,7 +9,7 @@
 
 <GridPane alignment="CENTER" maxHeight="800.0" maxWidth="1024.0" minHeight="800.0" minWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerGUI.SimulationGridController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="700.0" prefWidth="700.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="700.0" minWidth="700.0" prefWidth="700.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="325.0" minWidth="324.0" prefWidth="324.0" />
   </columnConstraints>
   <rowConstraints>
@@ -55,6 +55,11 @@
             </Slider>
          </children>
       </VBox>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <GridPane.margin>
+            <Insets left="40.0" top="40.0" />
+         </GridPane.margin>
+      </Pane>
    </children>
    <opaqueInsets>
       <Insets />
