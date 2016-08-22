@@ -45,13 +45,13 @@ public class SimulationThread<CellType> extends Thread {
 	public void run() {
 		//gui.showWorld(world);
 		while(true) {
-			Platform.runLater(new Runnable() {
-				public void run() {
-					controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
-				}
-			});
 			try {
 				if (!paused) {
+					Platform.runLater(new Runnable() {
+						public void run() {
+							controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
+						}
+					});
 					SimulationThread.sleep(delay);
 					incrementGeneration();
 				}
