@@ -4,11 +4,14 @@ import java.io.IOException;
 
 import controllerGUI.SimulationController;
 import framework.gui.GridGui;
+import framework.gui.WorldGui;
 import framework.simulation.SimulationThread;
+import framework.universe.cell.Pattern;
 import framework.universe2d.Coordinates2D;
 import gameoflife.GOLWorld;
 import gameoflife.SingleCellPattern;
 import gameoflife.ConwaysGameOfLifeRule;
+import gameoflife.GOLBuilder;
 import gameoflife.GOLDrawer;
 import gameoflife.ToadPattern;
 import javafx.application.Application;
@@ -30,23 +33,22 @@ public class Main extends Application {
 	
 	private GridPane root;
 	private SimulationController controller;
+	private static WorldGui gui;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			GOLWorld world = new GOLWorld(70, 70, new ConwaysGameOfLifeRule());
-			GridGui<Boolean> gui = new GridGui<Boolean>(70, new GOLDrawer());
+			//GridGui<Boolean> gui = 
 			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));
             root = (GridPane) loader.load();
-            root.add((Pane) gui, 0, 0);            
-            GridPane.setMargin(gui, new Insets(40, 0, 0, 40));
+            root.add(gui.getNode(), 0, 0);            
+            GridPane.setMargin(gui.getNode(), new Insets(40, 0, 0, 40));
             controller = loader.getController();
-            controller.setSimulation(new SimulationThread<Boolean>(world, gui));
+            controller.setSimulation(new SimulationThread<Boolean>(gui));
             // Listeners
             addCloseListener(primaryStage);
-            setMouseListener(gui, world);
             
             // Show the scene containing the root layout.
             Scene scene = new Scene(root);
@@ -72,31 +74,14 @@ public class Main extends Application {
         });
 	}
 	
-	private void setMouseListener(GridGui<Boolean> gui, GOLWorld world) {
-	    gui.setOnMouseDragged(new EventHandler<MouseEvent>() {
-	    	public void handle(MouseEvent m) {
-	    		double x = m.getX();
-	    		double y = m.getY();
-	    		
-	    		int colX = (int) (x/gui.getScreenHeight());
-	    		int colY = (int) (y/gui.getScreenHeight());
-	    		world.addPattern(new SingleCellPattern(), new Coordinates2D(colX, colY));
-	    	}
-	    });
-	    gui.setOnMouseClicked(new EventHandler<MouseEvent>() {
-	    	public void handle(MouseEvent m) {
-	    		double x = m.getX();
-	    		double y = m.getY();
-	    		
-	    		int colX = (int) (x/gui.getScreenHeight());
-	    		int colY = (int) (y/gui.getScreenHeight());
-	    		world.addPattern(new SingleCellPattern(), new Coordinates2D(colX, colY));
-	    	}
-	    });
+	public static void setSimulation(WorldGui gui) {
+		Main.gui = gui;
 	}
-	
-	public static void main(String[] args) {
-		launch(args);
+
+
+	public static void main(String[] args) throws Exception {
+		Main.setSimulation(GOLBuilder.build());
+		Main.launch(args);
 	}
 	
 }

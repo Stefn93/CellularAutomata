@@ -1,7 +1,13 @@
 package framework.simulation;
 
+import java.util.List;
+
+import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
+import framework.universe.cell.Pattern;
 import framework.universe.world.World;
+import javafx.application.Platform;
+import javafx.util.Callback;
 
 /**
  * Thread della simulazione vera
@@ -14,18 +20,19 @@ public class SimulationThread<CellType> extends Thread {
 	 * Mondo 
 	 */
 	protected World<CellType> world;
+	protected SimulationController controller;
 	protected WorldGui<CellType> gui;
 	private int generation = 0;
 	private int delay = 500;
 	private boolean paused;
 	
-	public SimulationThread(World<CellType> world, WorldGui<CellType> gui) {
-		this.world = world;
+	public SimulationThread(WorldGui<CellType> gui) {
+		this.world = gui.getWorld();
 		this.gui = gui;
 	}
 	
 	protected void incrementGeneration(){
-		gui.showWorld(world);
+		gui.showWorld();
 		generation++;
 		world.nextState();
 	}
@@ -38,6 +45,11 @@ public class SimulationThread<CellType> extends Thread {
 	public void run() {
 		//gui.showWorld(world);
 		while(true) {
+			Platform.runLater(new Runnable() {
+				public void run() {
+					controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
+				}
+			});
 			try {
 				if (!paused) {
 					SimulationThread.sleep(delay);
@@ -74,5 +86,17 @@ public class SimulationThread<CellType> extends Thread {
 		paused = false;
 		generation = 0;
 		world.reset();
+	}
+
+	public List<? extends Pattern> getPatterns() {
+		return gui.getPatternList();
+	}
+	
+	public WorldGui<CellType> getGui() {
+		return gui;
+	}
+
+	public void setGuiController(SimulationController controller) {
+		this.controller = controller;
 	}
 }

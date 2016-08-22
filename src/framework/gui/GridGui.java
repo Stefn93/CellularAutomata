@@ -1,27 +1,30 @@
 package framework.gui;
 
+import java.util.List;
+
 import framework.universe.cell.Cell;
+import framework.universe.cell.Pattern;
 import framework.universe.world.World;
 import framework.universe2d.Coordinates2D;
+import framework.universe2d.GridPattern;
 import framework.universe2d.World2D;
+import gameoflife.GOLWorld;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Screen;
 
-public class GridGui<T> extends Pane implements WorldGui<T>{
+public class GridGui<T> extends WorldGui<T>{
 	private Rectangle[][] rec;
-	private Drawer<T> drawer;
 	private double height;
 	private int n;
 	
 	
-	public GridGui(int n, Drawer<T> drawer) {
-		super();
-		this.drawer = drawer;
+	public GridGui(int n, Drawer<T> drawer, World2D<T> world, List<GridPattern<T>> patternList) {
+		super(drawer, world, patternList);
 		this.n = n;
+		node = new Pane();
 		rec = new Rectangle[n][n];
 		height = 690/n;
 	    for(int i=0; i<n; i++){
@@ -33,29 +36,50 @@ public class GridGui<T> extends Pane implements WorldGui<T>{
 	            rec[i][j].setHeight(height);
 	            rec[i][j].setFill(Color.BLACK);
 	            rec[i][j].setStroke(Color.DARKSLATEGREY);
-	            getChildren().add(rec[i][j]);
+	            ((Pane)node).getChildren().add(rec[i][j]);
 	        }
 	    }
 	    
 	}
 	
-	public double getScreenHeight(){
-		return height;
-	}
 	
 	private void fillCell(Cell<T> cell, int x, int y){
 		rec[x][y].setFill(drawer.getColor(cell));
 	}
 
 	@Override
-	public void showWorld(World<T> world) {
-		World2D<T> w = (World2D<T>) world;
-		for (int x = 0; x < w.getDimensions().getLength(); x++) {
-			for (int y = 0; y < w.getDimensions().getHeight(); y++) {
-				fillCell(w.getCell(new Coordinates2D(x, y)), x, y);
+	public void showWorld() {
+		for (int x = 0; x < world.getDimensions().getLength(); x++) {
+			for (int y = 0; y < world.getDimensions().getHeight(); y++) {
+				fillCell(world.getCell(new Coordinates2D(x, y)), x, y);
 			}
 		}
 		
+	}
+	
+
+	
+	public void setMouseListener(Pattern pattern) {
+	    ((Pane)node).setOnMouseDragged(new EventHandler<MouseEvent>() {
+	    	public void handle(MouseEvent m) {
+	    		double x = m.getX();
+	    		double y = m.getY();
+	    		
+	    		int colX = (int) (x/height);
+	    		int colY = (int) (y/height);
+	    		world.addPattern(pattern, new Coordinates2D(colX, colY));
+	    	}
+	    });
+	    ((Pane)node).setOnMouseClicked(new EventHandler<MouseEvent>() {
+	    	public void handle(MouseEvent m) {
+	    		double x = m.getX();
+	    		double y = m.getY();
+	    		
+	    		int colX = (int) (x/height);
+	    		int colY = (int) (y/height);
+	    		world.addPattern(pattern, new Coordinates2D(colX, colY));
+	    	}
+	    });
 	}
 }
 
