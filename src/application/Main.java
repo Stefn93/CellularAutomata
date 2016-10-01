@@ -35,6 +35,13 @@ public class Main extends Application {
 	private SimulationController controller;
 	private static WorldGui gui;
 	
+	//numero di caselle di un colore entro un raggio dalle altre caselle dello stesso colore 
+	//wa-tor pip
+	//gli automi cellulare riconsiderare - astrobiologica -
+	// forma di vita come esemplari che competono o forma di vita come liquidi che riconoscono ciò che sono e non sono.
+	//coacervato 
+	// pag 241
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -43,7 +50,7 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));
             root = (GridPane) loader.load();
-            root.add(gui.getNode(), 0, 0);            
+            root.add(gui.getNode(), 0, 0); 
             GridPane.setMargin(gui.getNode(), new Insets(40, 0, 0, 40));
             controller = loader.getController();
             controller.setSimulation(new SimulationThread<Boolean>(gui));

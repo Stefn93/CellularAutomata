@@ -1,6 +1,7 @@
 package gameoflife;
 
 import framework.simulation.Behaviour;
+import framework.simulation.StateList;
 import framework.universe.cell.Cell;
 import framework.universe.cell.Coordinates;
 import framework.universe.cell.SimpleCell;
@@ -76,6 +77,12 @@ public class ConwaysGameOfLifeRule implements Behaviour<Boolean> {
 	public void calculateGrid(Boolean value, World<Boolean> world, Coordinates coordinates) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public StateList<Boolean> getStateList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
  
 }

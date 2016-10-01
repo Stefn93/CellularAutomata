@@ -7,7 +7,6 @@ import framework.gui.WorldGui;
 import framework.universe.cell.Pattern;
 import framework.universe.world.World;
 import javafx.application.Platform;
-import javafx.util.Callback;
 
 /**
  * Thread della simulazione vera
@@ -25,6 +24,7 @@ public class SimulationThread<CellType> extends Thread {
 	private int generation = 0;
 	private int delay = 500;
 	private boolean paused;
+	private Monitor monitor;
 	
 	public SimulationThread(WorldGui<CellType> gui) {
 		this.world = gui.getWorld();
@@ -54,6 +54,7 @@ public class SimulationThread<CellType> extends Thread {
 					});
 					SimulationThread.sleep(delay);
 					incrementGeneration();
+					
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();

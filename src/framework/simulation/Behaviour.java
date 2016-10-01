@@ -12,4 +12,5 @@ import framework.universe.world.World;
 public interface Behaviour<CellType> {
     public CellType calculateNewValue(World<CellType> grid, Coordinates coordinates);
     public void calculateGrid(CellType value, World<CellType> world, Coordinates coordinates);
+    public StateList<CellType> getStateList();
 }
