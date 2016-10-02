@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import framework.simulation.SimulationThread;
 import framework.universe.cell.Pattern;
+import gameoflife.GOLCellType;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,10 +31,10 @@ public class SimulationController implements Initializable{
     @FXML
     private ChoiceBox<? extends Pattern> patternChoice; 
 
-	private SimulationThread<Boolean> simulation;
+	private SimulationThread<GOLCellType> simulation;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void setSimulation(SimulationThread<Boolean> simulation){
+	public void setSimulation(SimulationThread<GOLCellType> simulation){
 		this.simulation = simulation;
 		this.simulation.setGuiController(this);
 		ObservableList list = FXCollections.observableArrayList(simulation.getPatterns());

@@ -3,6 +3,7 @@ package framework.gui;
 import java.util.List;
 
 import framework.universe.cell.Cell;
+import framework.universe.cell.CellType;
 import framework.universe.cell.Pattern;
 import framework.universe.world.World;
 import framework.universe2d.Coordinates2D;
@@ -15,7 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class GridGui<T> extends WorldGui<T>{
+public class GridGui<T extends CellType> extends WorldGui<T>{
 	private Rectangle[][] rec;
 	private double height;
 	private int n;

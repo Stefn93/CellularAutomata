@@ -1,8 +1,9 @@
 package framework.universe.world;
 
 import framework.simulation.Behaviour;
+import framework.universe.cell.CellType;
 
-public abstract class SimpleWorld<T> implements World<T>{
+public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	protected Behaviour<T> behaviour;
 	protected int generation;
 	protected WorldDimension dimensions = new WorldDimension();

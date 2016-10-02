@@ -2,9 +2,11 @@ package gameoflife;
 
 import framework.universe2d.GridPattern;
 
-public class ToadPattern extends GridPattern<Boolean> {
+public class ToadPattern extends GridPattern<GOLCellType> {
     @Override
-    public Boolean[][] get() {
-        return new Boolean[][] {{false, true, true, true}, {true, true, true, false}};
+    public GOLCellType[][] get() {
+    	GOLCellType f = new GOLCellType("Dead", false);
+    	GOLCellType t = new GOLCellType("Alive", true);
+        return new GOLCellType[][] {{f, t, t, t}, {t, t, t, f}};
     }
 }

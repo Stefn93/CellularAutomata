@@ -3,30 +3,24 @@ package application;
 import java.io.IOException;
 
 import controllerGUI.SimulationController;
-import framework.gui.GridGui;
 import framework.gui.WorldGui;
+import framework.simulation.PopulationChart;
 import framework.simulation.SimulationThread;
-import framework.universe.cell.Pattern;
-import framework.universe2d.Coordinates2D;
-import gameoflife.GOLWorld;
-import gameoflife.SingleCellPattern;
-import gameoflife.ConwaysGameOfLifeRule;
 import gameoflife.GOLBuilder;
-import gameoflife.GOLDrawer;
-import gameoflife.ToadPattern;
+import gameoflife.GOLCellType;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
+import javafx.scene.chart.PieChart;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 
 public class Main extends Application {
@@ -34,6 +28,7 @@ public class Main extends Application {
 	private GridPane root;
 	private SimulationController controller;
 	private static WorldGui gui;
+	private static PopulationChart chart;
 	
 	//numero di caselle di un colore entro un raggio dalle altre caselle dello stesso colore 
 	//wa-tor pip
@@ -45,6 +40,18 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			Stage stage = new Stage();
+	        Scene scene1 = new Scene(new Group());
+	        stage.setTitle("Imported Fruits");
+	        stage.setWidth(500);
+	        stage.setHeight(500);
+	 
+
+
+	        ((Group) scene1.getRoot()).getChildren().add(chart);
+	        stage.setScene(scene1);
+	        stage.show();
+			
 			//GridGui<Boolean> gui = 
 			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -53,7 +60,7 @@ public class Main extends Application {
             root.add(gui.getNode(), 0, 0); 
             GridPane.setMargin(gui.getNode(), new Insets(40, 0, 0, 40));
             controller = loader.getController();
-            controller.setSimulation(new SimulationThread<Boolean>(gui));
+            controller.setSimulation(new SimulationThread<GOLCellType>(gui, chart));
             // Listeners
             addCloseListener(primaryStage);
             
@@ -88,7 +95,12 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 		Main.setSimulation(GOLBuilder.build());
+		Main.setGraph(GOLBuilder.buildPieChart());
 		Main.launch(args);
+	}
+
+	private static void setGraph(PopulationChart buildPieChart) {
+		chart = buildPieChart;
 	}
 	
 }

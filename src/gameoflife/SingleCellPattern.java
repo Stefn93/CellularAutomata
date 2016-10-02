@@ -2,11 +2,11 @@ package gameoflife;
 
 import framework.universe2d.GridPattern;
 
-public class SingleCellPattern extends GridPattern<Boolean>{
+public class SingleCellPattern extends GridPattern<GOLCellType>{
 
 	@Override
-	public Boolean[][] get() {
-		return new Boolean[][] {{true}};
+	public GOLCellType[][] get() {
+		return new GOLCellType[][] {{new GOLCellType("Alive", true)}};
 	}
 
 }

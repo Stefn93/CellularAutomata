@@ -2,12 +2,13 @@ package framework.gui;
 
 import java.util.List;
 
+import framework.universe.cell.CellType;
 import framework.universe.cell.Pattern;
 import framework.universe.world.World;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
-public abstract class WorldGui<T> {
+public abstract class WorldGui<T extends CellType> {
 	protected World<T> world;
 	protected Drawer<T> drawer;
 	protected List<? extends Pattern> patternList;

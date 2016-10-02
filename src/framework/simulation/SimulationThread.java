@@ -4,31 +4,34 @@ import java.util.List;
 
 import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
+import framework.universe.cell.CellType;
 import framework.universe.cell.Pattern;
 import framework.universe.world.World;
 import javafx.application.Platform;
+import javafx.scene.chart.PieChart;
 
 /**
  * Thread della simulazione vera
  * @author Gianluca
  *
- * @param <CellType>
+ * @param <x>
  */
-public class SimulationThread<CellType> extends Thread {
+public class SimulationThread<x extends CellType> extends Thread {
 	/**
 	 * Mondo 
 	 */
-	protected World<CellType> world;
+	protected World<x> world;
 	protected SimulationController controller;
-	protected WorldGui<CellType> gui;
+	protected WorldGui<x> gui;
+	protected PopulationChart<x> chart;
 	private int generation = 0;
-	private int delay = 500;
+	private int delay = 5000;
 	private boolean paused;
-	private Monitor monitor;
 	
-	public SimulationThread(WorldGui<CellType> gui) {
+	public SimulationThread(WorldGui<x> gui, PopulationChart<x> chart2) {
 		this.world = gui.getWorld();
 		this.gui = gui;
+		this.chart = chart2;
 	}
 	
 	protected void incrementGeneration(){
@@ -50,10 +53,13 @@ public class SimulationThread<CellType> extends Thread {
 					Platform.runLater(new Runnable() {
 						public void run() {
 							controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
+							incrementGeneration();
+							chart.updateInfo(world.getPopulationStatus());
+
 						}
 					});
 					SimulationThread.sleep(delay);
-					incrementGeneration();
+
 					
 				}
 			} catch (InterruptedException e) {
@@ -70,7 +76,7 @@ public class SimulationThread<CellType> extends Thread {
 		return delay;
 	}
 	
-	public World<CellType> getWorld() {
+	public World<x> getWorld() {
 		return world;
 	}
 
@@ -93,7 +99,7 @@ public class SimulationThread<CellType> extends Thread {
 		return gui.getPatternList();
 	}
 	
-	public WorldGui<CellType> getGui() {
+	public WorldGui<x> getGui() {
 		return gui;
 	}
 

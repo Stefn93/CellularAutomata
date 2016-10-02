@@ -1,6 +1,6 @@
 package framework.universe.cell;
 
-public class SimpleCell<T> implements Cell<T> {
+public class SimpleCell<T extends CellType> implements Cell<T> {
  
     private T value;
     private T revaluatedValue;

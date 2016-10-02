@@ -7,18 +7,18 @@ import framework.universe.cell.Cell;
 import framework.universe.cell.SimpleCell;
 import javafx.scene.paint.Color;
 
-public class GOLDrawer implements Drawer<Boolean>{
+public class GOLDrawer implements Drawer<GOLCellType>{
 	
-	private HashMap<Boolean, Color> map = new HashMap<Boolean, Color>();
+	private HashMap<GOLCellType, Color> map = new HashMap<GOLCellType, Color>();
 	
 	public GOLDrawer() {
 		//map.put(null, DEAD);
-		map.put(true, Color.DARKCYAN);
-		map.put(false, DEAD);
+		map.put(new GOLCellType("Alive", true), Color.DARKCYAN);
+		map.put(new GOLCellType("Dead", false), DEAD);
 	}
 	
 	@Override
-	public Color getColor(Cell<Boolean> cell) {
+	public Color getColor(Cell<GOLCellType> cell) {
 		return map.get(cell.getValue());
 	}
 }

@@ -2,17 +2,19 @@ package framework.universe2d;
 
 import framework.simulation.Behaviour;
 import framework.universe.cell.Cell;
+import framework.universe.cell.CellType;
 import framework.universe.cell.Coordinates;
 import framework.universe.cell.Pattern;
 import framework.universe.cell.SimpleCell;
 import framework.universe.world.SimpleWorld;
+import gameoflife.GOLCellType;
 
-public abstract class World2D<CellType> extends SimpleWorld<CellType> {
+public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
 
-	private Cell<CellType>[][] grid;	
+	private Cell<x>[][] grid;	
 	
 	@SuppressWarnings("unchecked")
-	public World2D(int height, int length, Behaviour<CellType> behaviour){
+	public World2D(int height, int length, Behaviour<x> behaviour){
 		super(behaviour);
 		dimensions.setHeight(height);
 		dimensions.setLength(length);
@@ -33,7 +35,7 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
         for (int y = gridCoordinates.getY(); y < dimensions.getHeight() && y < gridCoordinates.getY() + patternValues.length; y++) {
             for (int x = gridCoordinates.getX(); x < dimensions.getLength() && x < gridCoordinates.getX() + patternValues[0].length; x++) {
             	if (y > dimensions.getHeight() || y < 0 || x < 0 || x > dimensions.getLength()) continue;
-            	grid[x][y].setValue(patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
+            	grid[x][y].setValue((x) patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
             }
         }
     }
@@ -42,7 +44,7 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
 	public void nextState() {
 		for (int i = 0; i < dimensions.getLength(); i++) {
 			for (int j = 0; j < dimensions.getHeight(); j++) {
-				grid[i][j].revaluateCell(behaviour.calculateNewValue(this, new Coordinates2D(i, j)));
+				grid[i][j].revaluateCell((x) behaviour.calculateNewValue(this, new Coordinates2D(i, j)));
 			}
 		}
 		for (int i = 0; i < dimensions.getLength(); i++) {
@@ -53,7 +55,7 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
 	}
 
 	@Override
-	public Cell<CellType> getCell(Coordinates coordinates) {
+	public Cell<x> getCell(Coordinates coordinates) {
 		Coordinates2D c = (Coordinates2D) coordinates;
 		int x = c.getX();
 		int y = c.getY();
@@ -62,7 +64,7 @@ public abstract class World2D<CellType> extends SimpleWorld<CellType> {
         return grid[c.getX()][c.getY()];
 	}
 	
-    protected abstract Cell<CellType> createNewCell();
+    protected abstract Cell<x> createNewCell();
     protected abstract void clear();
     protected abstract void defaultState();
     
