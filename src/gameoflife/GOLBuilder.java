@@ -25,18 +25,18 @@ public class GOLBuilder {
 		return gui;
 	}
 
-	public static PopulationChart<GOLCellType> buildPieChart() {
+	public static PopulationChart<GOLCellType> buildPopulationChart() {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-        xAxis.setLabel("Number of Month");
+        xAxis.setAutoRanging(true);
+        xAxis.setLabel("Generation");
+        yAxis.setLabel("Population");
+        xAxis.setAnimated(true);
+        yAxis.setAnimated(true);
         //creating the chart
-        final LineChart<Number,Number> lineChart = 
-                new LineChart<Number,Number>(xAxis,yAxis);
-        
+
         final PopulationChart<GOLCellType> chart = new PopulationChart(xAxis, yAxis, new GOLStateList());
-        lineChart.setTitle("Stock Monitoring, 2010");
         
-        chart.setTitle("Imported Fruits");
 		return chart;
 	}
 

@@ -23,15 +23,17 @@ public class SimulationThread<x extends CellType> extends Thread {
 	protected World<x> world;
 	protected SimulationController controller;
 	protected WorldGui<x> gui;
-	protected PopulationChart<x> chart;
+	protected PopulationChart<x> populationChart;
+	protected EvolutionRateChart evolutionChart;
 	private int generation = 0;
-	private int delay = 5000;
+	private int delay = 500;
 	private boolean paused;
 	
-	public SimulationThread(WorldGui<x> gui, PopulationChart<x> chart2) {
+	public SimulationThread(WorldGui<x> gui, PopulationChart<x> populationChart, EvolutionRateChart chart) {
 		this.world = gui.getWorld();
 		this.gui = gui;
-		this.chart = chart2;
+		this.populationChart = populationChart;
+		this.evolutionChart = chart;
 	}
 	
 	protected void incrementGeneration(){
@@ -53,8 +55,9 @@ public class SimulationThread<x extends CellType> extends Thread {
 					Platform.runLater(new Runnable() {
 						public void run() {
 							controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
+							populationChart.updateInfo(generation, world.getPopulationStatus());
+							evolutionChart.updateInfo(generation, world.getEvolutionRate());
 							incrementGeneration();
-							chart.updateInfo(world.getPopulationStatus());
 
 						}
 					});
@@ -93,6 +96,7 @@ public class SimulationThread<x extends CellType> extends Thread {
 		paused = false;
 		generation = 0;
 		world.reset();
+		populationChart.reset();
 	}
 
 	public List<? extends Pattern> getPatterns() {

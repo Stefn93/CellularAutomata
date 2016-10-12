@@ -7,7 +7,13 @@ public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	protected Behaviour<T> behaviour;
 	protected int generation;
 	protected WorldDimension dimensions = new WorldDimension();
+	protected int evolutionRate;
 
+
+	public int getEvolutionRate(){
+		return evolutionRate;
+	}
+	
 	public SimpleWorld(Behaviour<T> behaviour) {
 		this.behaviour = behaviour;
 	}

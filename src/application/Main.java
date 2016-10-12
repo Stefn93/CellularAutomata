@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
+import framework.simulation.EvolutionRateChart;
 import framework.simulation.PopulationChart;
 import framework.simulation.SimulationThread;
 import gameoflife.GOLBuilder;
@@ -19,6 +20,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.chart.Chart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.GridPane;
 
@@ -28,7 +32,8 @@ public class Main extends Application {
 	private GridPane root;
 	private SimulationController controller;
 	private static WorldGui gui;
-	private static PopulationChart chart;
+	private static PopulationChart populationChart;
+	private static EvolutionRateChart evolutionRateChart;
 	
 	//numero di caselle di un colore entro un raggio dalle altre caselle dello stesso colore 
 	//wa-tor pip
@@ -40,18 +45,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Stage stage = new Stage();
-	        Scene scene1 = new Scene(new Group());
-	        stage.setTitle("Imported Fruits");
-	        stage.setWidth(500);
-	        stage.setHeight(500);
-	 
 
-
-	        ((Group) scene1.getRoot()).getChildren().add(chart);
-	        stage.setScene(scene1);
-	        stage.show();
-			
+			showChart(populationChart, "Population Chart");
+			showChart(evolutionRateChart, "Evolution Rate");
 			//GridGui<Boolean> gui = 
 			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -60,7 +56,7 @@ public class Main extends Application {
             root.add(gui.getNode(), 0, 0); 
             GridPane.setMargin(gui.getNode(), new Insets(40, 0, 0, 40));
             controller = loader.getController();
-            controller.setSimulation(new SimulationThread<GOLCellType>(gui, chart));
+            controller.setSimulation(new SimulationThread<GOLCellType>(gui, populationChart, evolutionRateChart));
             // Listeners
             addCloseListener(primaryStage);
             
@@ -77,6 +73,24 @@ public class Main extends Application {
             e.printStackTrace();
         }
 	}
+	
+	private void showChart(LineChart chart, String name) {
+			Stage stage = new Stage();
+	        Scene scene = new Scene(new Group());
+	        
+			chart.setCreateSymbols(false);
+			chart.setTitle(name);
+	        stage.setTitle(name);
+			chart.setAnimated(true);
+			chart.autosize();
+	        stage.setWidth(550);
+	        stage.setHeight(550);
+	        ((Group) scene.getRoot()).getChildren().add(chart);
+	        stage.setScene(scene);
+	        stage.show();
+	}
+
+
 	
 	private void addCloseListener(Stage primaryStage) {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -95,12 +109,15 @@ public class Main extends Application {
 
 	public static void main(String[] args) throws Exception {
 		Main.setSimulation(GOLBuilder.build());
-		Main.setGraph(GOLBuilder.buildPieChart());
+        final NumberAxis xAxis = new NumberAxis();
+        final NumberAxis yAxis = new NumberAxis();
+		Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(xAxis, yAxis));
 		Main.launch(args);
 	}
 
-	private static void setGraph(PopulationChart buildPieChart) {
-		chart = buildPieChart;
+	private static void setGraph(PopulationChart buildPieChart, EvolutionRateChart evolutionRateChart2) {
+		populationChart = buildPieChart;
+		evolutionRateChart = evolutionRateChart2;
 	}
 	
 }

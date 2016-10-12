@@ -18,5 +18,6 @@ public interface World<T extends CellType> {
     public void addPattern(Pattern pattern, Coordinates coordinates);
 	public void reset();
 	public Map<T, Integer> getPopulationStatus();
+	public int getEvolutionRate();
 
 }
