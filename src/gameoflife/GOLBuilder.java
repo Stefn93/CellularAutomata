@@ -20,8 +20,11 @@ public class GOLBuilder {
 		List<GridPattern<GOLCellType>> list = new ArrayList<GridPattern<GOLCellType>>();
 		list.add(new ToadPattern());
 		list.add(new SingleCellPattern());
+
 		GridGui<GOLCellType> gui = new GridGui<GOLCellType>(70, new GOLDrawer(), new GOLWorld(70, 70, new ConwaysGameOfLifeRule()), list);
         gui.setMouseListener(new SingleCellPattern());
+		
+		
 		return gui;
 	}
 
