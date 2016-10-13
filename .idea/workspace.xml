@@ -2,21 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dba510a-6bd3-47c3-80f7-c02eb14865dc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/application/Main$1.class" afterPath="$PROJECT_DIR$/bin/application/Main$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/application/Main.class" afterPath="$PROJECT_DIR$/bin/application/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/gui/Drawer.class" afterPath="$PROJECT_DIR$/bin/framework/gui/Drawer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/gui/GridGui.class" afterPath="$PROJECT_DIR$/bin/framework/gui/GridGui.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/gui/WorldGui.class" afterPath="$PROJECT_DIR$/bin/framework/gui/WorldGui.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/simulation/Behaviour.class" afterPath="$PROJECT_DIR$/bin/framework/simulation/Behaviour.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/simulation/SimulationThread.class" afterPath="$PROJECT_DIR$/bin/framework/simulation/SimulationThread.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/universe/cell/Cell.class" afterPath="$PROJECT_DIR$/bin/framework/universe/cell/Cell.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/universe/cell/SimpleCell.class" afterPath="$PROJECT_DIR$/bin/framework/universe/cell/SimpleCell.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/universe/world/SimpleWorld.class" afterPath="$PROJECT_DIR$/bin/framework/universe/world/SimpleWorld.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/universe/world/World.class" afterPath="$PROJECT_DIR$/bin/framework/universe/world/World.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/framework/universe2d/World2D.class" afterPath="$PROJECT_DIR$/bin/framework/universe2d/World2D.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameoflife/ConwaysGameOfLifeRule.class" afterPath="$PROJECT_DIR$/bin/gameoflife/ConwaysGameOfLifeRule.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameoflife/GOLDrawer.class" afterPath="$PROJECT_DIR$/bin/gameoflife/GOLDrawer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gameoflife/ToadPattern.class" afterPath="$PROJECT_DIR$/bin/gameoflife/ToadPattern.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CellularAutomata.iws" />
@@ -39,11 +24,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
+            <state relative-caret-position="1518">
               <caret line="93" column="4" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimulationGrid.fxml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/application/SimulationGrid.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -638,15 +636,17 @@
       <workItem from="1474534315071" duration="181000" />
       <workItem from="1476350741148" duration="808000" />
       <workItem from="1476351754344" duration="154000" />
+      <workItem from="1476351963310" duration="98000" />
+      <workItem from="1476352076643" duration="246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2512000" />
+    <option name="totallyTimeSpent" value="2856000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -656,7 +656,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20636663" sideWeight="0.50416666" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16575192" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16575192" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -697,6 +697,33 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/application/Main.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1518">
+          <caret line="93" column="4" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/SimulationGrid.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -731,7 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -767,14 +793,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
+        <state relative-caret-position="1518">
           <caret line="93" column="4" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/SimulationGrid.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
