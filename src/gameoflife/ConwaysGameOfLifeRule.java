@@ -38,6 +38,7 @@ public class ConwaysGameOfLifeRule implements Behaviour<GOLCellType> {
         }
     }
      
+    
     private Cell<GOLCellType> getUpperNeighbor(World2D<GOLCellType> world, Coordinates2D coordinates) {
         int neighborX = coordinates.getX();
         int neighborY = coordinates.getY() - 1;

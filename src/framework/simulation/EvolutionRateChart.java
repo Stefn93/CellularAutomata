@@ -19,5 +19,6 @@ public class EvolutionRateChart extends LineChart<Integer, Integer>{
 	public void updateInfo(int generation, int evolutionRate) {
 		this.getData().get(0).getData().add(new XYChart.Data(generation, evolutionRate));
 	}
+	
 
 }

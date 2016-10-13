@@ -40,6 +40,7 @@ public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
         }
     }
 	
+    
 	@Override
 	public void nextState() {
 		evolutionRate = 0;

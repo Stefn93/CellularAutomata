@@ -19,7 +19,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 
 public class SimulationController implements Initializable{
-
+	
     @FXML 
     private Button restart;
     @FXML 

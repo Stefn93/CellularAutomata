@@ -8,3 +8,4 @@ public class GOLStateList extends StateList<GOLCellType>{
 		add(new GOLCellType("Alive", true));
 	}
 }
+

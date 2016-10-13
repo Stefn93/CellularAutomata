@@ -58,6 +58,7 @@ public class GridGui<T extends CellType> extends WorldGui<T>{
 		
 	}
 	
+	
 
 	
 	public void setMouseListener(Pattern pattern) {

@@ -33,6 +33,7 @@ public class PopulationChart<T extends CellType> extends LineChart<Integer, Inte
 		}
 
 	}
+	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void updateInfo(int generation, Map<T, Integer> worldStatus) {

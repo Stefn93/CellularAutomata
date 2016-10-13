@@ -33,3 +33,4 @@ public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	}
 
 }
+

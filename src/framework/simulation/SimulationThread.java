@@ -54,7 +54,7 @@ public class SimulationThread<x extends CellType> extends Thread {
 				if (!paused) {
 					Platform.runLater(new Runnable() {
 						public void run() {
-							controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
+							//controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
 							populationChart.updateInfo(generation, world.getPopulationStatus());
 							evolutionChart.updateInfo(generation, world.getEvolutionRate());
 							incrementGeneration();

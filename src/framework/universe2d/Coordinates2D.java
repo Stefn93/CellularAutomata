@@ -29,3 +29,4 @@ public class Coordinates2D implements Coordinates{
 		return x + " " + y;
 	}
 }
+

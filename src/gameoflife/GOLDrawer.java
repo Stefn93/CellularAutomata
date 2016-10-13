@@ -22,3 +22,4 @@ public class GOLDrawer implements Drawer<GOLCellType>{
 		return map.get(cell.getValue());
 	}
 }
+

@@ -22,6 +22,7 @@ public class SimpleCell<T extends CellType> implements Cell<T> {
         revaluatedValue = value;
     }
  
+    
     @Override
     public boolean confirmRevaluation() {
     	if (!value.equals(revaluatedValue)) {

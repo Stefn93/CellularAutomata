@@ -14,3 +14,4 @@ public interface Behaviour<x extends CellType> {
     public CellType calculateNewValue(World<x> grid, Coordinates coordinates);
     public void calculateGrid(CellType value, World<x> world, Coordinates coordinates);
 }
+

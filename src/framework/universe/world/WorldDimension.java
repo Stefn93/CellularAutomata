@@ -25,3 +25,4 @@ public class WorldDimension {
 		this.depth = depth;
 	}
 }
+
