@@ -2,6 +2,7 @@ package application;
 	
 import java.io.IOException;
 
+import cellularTransport.CTBuilder;
 import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
 import framework.simulation.EvolutionRateChart;
@@ -108,10 +109,17 @@ public class Main extends Application {
 
 
 	public static void main(String[] args) throws Exception {
-		Main.setSimulation(GOLBuilder.build());
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
-		Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(xAxis, yAxis));
+        
+        //GAME OF LIFE
+        //Main.setSimulation(GOLBuilder.build());
+		//Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(xAxis, yAxis));
+        
+        //CELLULAR MEMBRANE
+        Main.setSimulation(CTBuilder.build());
+        Main.setGraph(CTBuilder.buildPopulationChart(), new EvolutionRateChart(xAxis,yAxis)); 
+        
 		Main.launch(args);
 	}
 
