@@ -28,9 +28,9 @@ public class CTWorld extends World2D<CTCellType> {
 	public void defaultState() {
 		for(int i = 0; i < dimensions.getHeight(); i++){
 			if(i % 10 == 0)
-				addPattern(new ProteinChannelPattern(), new Coordinates2D(i, 34));
+				addPattern(new ProteinChannelPattern(), new Coordinates2D(34, i));
 			else
-				addPattern(new MembranePattern(), new Coordinates2D(i, 34));
+				addPattern(new MembranePattern(), new Coordinates2D(34, i));
 		}
 	}
 
@@ -56,7 +56,6 @@ public class CTWorld extends World2D<CTCellType> {
 				population.put(cell, population.get(cell)+ 1);
 			}
 		}
-		//System.out.println(population);
 		return population;
 	}
 

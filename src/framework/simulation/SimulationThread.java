@@ -11,7 +11,7 @@ import javafx.application.Platform;
 import javafx.scene.chart.PieChart;
 
 /**
- * Thread della simulazione vera
+ * Thread della simulazione
  * @author Gianluca
  *
  * @param <x>
@@ -45,7 +45,6 @@ public class SimulationThread<x extends CellType> extends Thread {
 	public int getGeneration() {
 		return generation;
 	}
-
 	
 	public void run() {
 		//gui.showWorld(world);
@@ -54,7 +53,7 @@ public class SimulationThread<x extends CellType> extends Thread {
 				if (!paused) {
 					Platform.runLater(new Runnable() {
 						public void run() {
-							//controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
+							controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
 							populationChart.updateInfo(generation, world.getPopulationStatus());
 							evolutionChart.updateInfo(generation, world.getEvolutionRate());
 							incrementGeneration();
@@ -62,8 +61,6 @@ public class SimulationThread<x extends CellType> extends Thread {
 						}
 					});
 					SimulationThread.sleep(delay);
-
-					
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();

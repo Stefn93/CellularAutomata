@@ -47,6 +47,7 @@ public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
 		for (int i = 0; i < dimensions.getLength(); i++) {
 			for (int j = 0; j < dimensions.getHeight(); j++) {
 				grid[i][j].revaluateCell((x) behaviour.calculateNewValue(this, new Coordinates2D(i, j)));
+				System.out.println(grid[i][j].getValue());
 			}
 		}
 		for (int i = 0; i < dimensions.getLength(); i++) {

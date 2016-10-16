@@ -19,43 +19,43 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
         World2D<CTCellType> gridWorld = (CTWorld) world;
         
         int status = ((Integer) world.getCell(gridCoordinates).getValue().getValue());
-        if( status >= 3 || status <= 5) {
+        if( status >= 3 || status <= 5) 
     		return cellMovement(gridCoordinates,gridWorld);
-        }
-        else return world.getCell(gridCoordinates).getValue(); 
+        else 
+        	return gridWorld.getCell(gridCoordinates).getValue(); 
     }
     
     private CTCellType cellMovement(Coordinates2D gridCoordinates, World2D<CTCellType> gridWorld){
     	Double casualDirection = Math.random();
-    	if(casualDirection % 8 < 1 && ((Integer) getUpperLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	if((casualDirection % 8) < 1 && ((Integer) getUpperLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getUpperLeftNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
-    	else if(casualDirection % 8 < 2 && ((Integer) getUpperNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	else if((casualDirection % 8) < 2 && ((Integer) getUpperNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getUpperNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
-    	else if(casualDirection % 8 < 3 && ((Integer) getUpperRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	else if((casualDirection % 8) < 3 && ((Integer) getUpperRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getUpperRightNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
-    	else if(casualDirection % 8 < 4 && ((Integer) getRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	else if((casualDirection % 8) < 4 && ((Integer) getRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getRightNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
-    	else if(casualDirection % 8 < 5 && ((Integer) getLowerRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	else if((casualDirection % 8) < 5 && ((Integer) getLowerRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getLowerRightNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
-    	else if(casualDirection % 8 < 6 && ((Integer) getLowerNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	else if((casualDirection % 8) < 6 && ((Integer) getLowerNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getLowerNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
-    	else if(casualDirection % 8 < 7 && ((Integer) getLowerLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	else if((casualDirection % 8) < 7 && ((Integer) getLowerLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getLowerLeftNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
-    	else if(casualDirection % 8 < 8 && ((Integer) getLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
+    	else if((casualDirection % 8) < 8 && ((Integer) getLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getLeftNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
     	}
