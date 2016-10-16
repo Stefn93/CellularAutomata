@@ -6,6 +6,7 @@ import framework.universe.cell.CellType;
 import framework.universe.cell.Coordinates;
 import framework.universe.cell.Pattern;
 import framework.universe.cell.SimpleCell;
+import framework.universe.cell.StateList;
 import framework.universe.world.SimpleWorld;
 import gameoflife.GOLCellType;
 
@@ -14,8 +15,9 @@ public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
 	private Cell<x>[][] grid;	
 	
 	@SuppressWarnings("unchecked")
-	public World2D(int height, int length, Behaviour<x> behaviour){
+	public World2D(StateList<x> stateList, int height, int length, Behaviour<x> behaviour){
 		super(behaviour);
+		this.list = stateList;
 		dimensions.setHeight(height);
 		dimensions.setLength(length);
 		this.grid = new Cell[height][length];

@@ -2,12 +2,14 @@ package framework.universe.world;
 
 import framework.simulation.Behaviour;
 import framework.universe.cell.CellType;
+import framework.universe.cell.StateList;
 
 public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	protected Behaviour<T> behaviour;
 	protected int generation;
 	protected WorldDimension dimensions = new WorldDimension();
 	protected int evolutionRate;
+	protected StateList<T> list;
 
 
 	public int getEvolutionRate(){

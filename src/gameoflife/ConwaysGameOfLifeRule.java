@@ -10,8 +10,8 @@ import framework.universe2d.Coordinates2D;
 import framework.universe2d.World2D;
 
 public class ConwaysGameOfLifeRule implements Behaviour<GOLCellType> {
-     
-    private static Cell<GOLCellType> EMPTY_CELL = new SimpleCell<GOLCellType>(new GOLCellType("Dead", false));
+    private static GOLStateList list = new GOLStateList();
+    private static Cell<GOLCellType> EMPTY_CELL = new SimpleCell<GOLCellType>(list.get("Dead"));
  
     @Override
     public GOLCellType calculateNewValue(World<GOLCellType> world, Coordinates coordinates) {
@@ -24,16 +24,22 @@ public class ConwaysGameOfLifeRule implements Behaviour<GOLCellType> {
         if ((boolean) world.getCell(coordinates).getValue().getValue()) {
         	boolean value = sum == 2 || sum == 3;
         	if (value) {
-        		return new GOLCellType("Alive", value);
+        		return list.get("Alive");
+        		//return new GOLCellType("Alive", value);
         	} else {
-        		return new GOLCellType("Dead", value);
+        		return list.get("dead");
+        		//return new GOLCellType("Dead", value);
         	}
         } else {
         	boolean value = sum == 3;
         	if (value) {
-        		return new GOLCellType("Alive", value);
+        		//return new GOLCellType("Alive", value);
+        		return list.get("Alive");
+
         	} else {
-        		return new GOLCellType("Dead", value);
+        		//return new GOLCellType("Dead", value);
+        		return list.get("dead");
+
         	}
         }
     }

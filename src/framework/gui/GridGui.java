@@ -5,11 +5,9 @@ import java.util.List;
 import framework.universe.cell.Cell;
 import framework.universe.cell.CellType;
 import framework.universe.cell.Pattern;
-import framework.universe.world.World;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.GridPattern;
 import framework.universe2d.World2D;
-import gameoflife.GOLWorld;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,12 +17,9 @@ import javafx.scene.shape.Rectangle;
 public class GridGui<T extends CellType> extends WorldGui<T>{
 	private Rectangle[][] rec;
 	private double height;
-	private int n;
 	
-	
-	public GridGui(int n, Drawer<T> drawer, World2D<T> world, List<GridPattern<T>> patternList) {
-		super(drawer, world, patternList);
-		this.n = n;
+	public GridGui(int n, World2D<T> world, List<GridPattern<T>> patternList) {
+		super(world, patternList);
 		node = new Pane();
 		rec = new Rectangle[n][n];
 		height = 690/n;
@@ -45,7 +40,7 @@ public class GridGui<T extends CellType> extends WorldGui<T>{
 	
 	
 	private void fillCell(Cell<T> cell, int x, int y){
-		rec[x][y].setFill(drawer.getColor(cell));
+		rec[x][y].setFill(cell.getValue().getColor());
 	}
 
 	@Override

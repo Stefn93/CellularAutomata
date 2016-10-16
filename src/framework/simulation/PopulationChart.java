@@ -1,16 +1,15 @@
 package framework.simulation;
 
-import java.util.Iterator;
 
 import framework.universe.cell.CellType;
 import framework.universe.cell.StateList;
-import gameoflife.GOLCellType;
-import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
+import javafx.scene.shape.Circle;
+
 import java.util.*;
 
 public class PopulationChart<T extends CellType> extends LineChart<Integer, Integer>{
@@ -19,19 +18,30 @@ public class PopulationChart<T extends CellType> extends LineChart<Integer, Inte
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PopulationChart(Axis xAxis, Axis yAxis, StateList<T> states) {
-
-
 		super(xAxis, yAxis);
-		getStyleClass().add("thick-chart");
 		this.states = states;
 		for (CellType state:states) {
 			if (!state.getValueName().equals(StateList.DEAD)) {
 		        XYChart.Series series = new XYChart.Series();
+		        String colorString = state.getColor().toString().replace("0x", "");
 		        series.setName(state.getValueName());
 		        getData().add(series);
+		        series.getNode().getStyleClass().add(series.getName());
+		        Set<Node> lineNode = this.lookupAll("."+series.getName());  
+		        for (final Node line : lineNode) {  
+		        	line.setStyle("-fx-stroke: #"+colorString+"; "
+		        			+ "-fx-stroke-width: 2px;");  
+		        }  
+		        Set<Node> set = this.lookupAll("Label.chart-legend-item");
+		        for (Node n:set) {
+		        	Label l = (Label) n;
+		        	if (l.getText().equals(state.getValueName())) {
+		        		final Circle rectangle = new Circle(5, state.getColor());
+		        		l.setGraphic(rectangle);
+		        	}
+		        }
 			}
 		}
-
 	}
 	
 
@@ -55,8 +65,7 @@ public class PopulationChart<T extends CellType> extends LineChart<Integer, Inte
 	public void reset() {
 		Iterator<javafx.scene.chart.XYChart.Series<Integer, Integer>> it = this.getDisplayedSeriesIterator();
         while (it.hasNext()) {
-        	Series actual = it.next();
-        	actual.getData().clear();
+        	it.next().getData().clear();
         }
 	}
 }

@@ -6,7 +6,8 @@ public class SingleCellPattern extends GridPattern<GOLCellType>{
 
 	@Override
 	public GOLCellType[][] get() {
-		return new GOLCellType[][] {{new GOLCellType("Alive", true)}};
+		list = new GOLStateList();
+		return new GOLCellType[][] {{list.get("alive")}};
 	}
 
 }
