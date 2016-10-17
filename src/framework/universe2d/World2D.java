@@ -37,7 +37,8 @@ public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
         for (int y = gridCoordinates.getY(); y < dimensions.getHeight() && y < gridCoordinates.getY() + patternValues.length; y++) {
             for (int x = gridCoordinates.getX(); x < dimensions.getLength() && x < gridCoordinates.getX() + patternValues[0].length; x++) {
             	if (y > dimensions.getHeight() || y < 0 || x < 0 || x > dimensions.getLength()) continue;
-            	grid[x][y].setValue((x) patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
+            	if (this.isDead(new Coordinates2D(x, y)))
+            		grid[x][y].setValue((x) patternValues[y - gridCoordinates.getY()][x - gridCoordinates.getX()]);
             }
         }
     }
@@ -49,7 +50,6 @@ public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
 		for (int i = 0; i < dimensions.getLength(); i++) {
 			for (int j = 0; j < dimensions.getHeight(); j++) {
 				grid[i][j].revaluateCell((x) behaviour.calculateNewValue(this, new Coordinates2D(i, j)));
-				System.out.println(grid[i][j].getValue());
 			}
 		}
 		for (int i = 0; i < dimensions.getLength(); i++) {
@@ -65,8 +65,9 @@ public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
 		Coordinates2D c = (Coordinates2D) coordinates;
 		int x = c.getX();
 		int y = c.getY();
-        if (x < 0 || y < 0 || x >= dimensions.getLength() || y >= dimensions.getHeight()) 
+        if (x < 0 || y < 0 || x >= dimensions.getLength() || y >= dimensions.getHeight()) {
         	return null;
+        }
         return grid[c.getX()][c.getY()];
 	}
 	

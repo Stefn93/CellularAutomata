@@ -43,14 +43,14 @@ public class CTWorld extends World2D<CTCellType> {
 
 	@Override
 	public Map<CTCellType, Integer> getPopulationStatus() {
-		CTStateList states = new CTStateList();
 		Map<CTCellType, Integer> population = new HashMap<CTCellType, Integer>();
-		for (CTCellType c:states){
+		for (CTCellType c:list){
 			population.put(c, new Integer(0));
 		}
 		for (int x = 0; x < dimensions.getLength(); x++) {
 			for (int y = 0; y < dimensions.getHeight(); y++) {
 				CTCellType cell = this.getCell(new Coordinates2D(x, y)).getValue();
+				
 				population.put(cell, population.get(cell) + 1);
 			}
 		}

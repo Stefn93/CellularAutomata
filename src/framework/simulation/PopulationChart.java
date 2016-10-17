@@ -9,6 +9,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.util.*;
 
@@ -26,19 +27,21 @@ public class PopulationChart<T extends CellType> extends LineChart<Integer, Inte
 		        String colorString = state.getColor().toString().replace("0x", "");
 		        series.setName(state.getValueName());
 		        getData().add(series);
-		        series.getNode().getStyleClass().add(series.getName());
-		        Set<Node> lineNode = this.lookupAll("."+series.getName());  
+		        series.getNode().getStyleClass().add(series.getName().replace(" ", "-"));
+		        Set<Node> lineNode = this.lookupAll("."+series.getName().replace(" ", "-"));  
+		        System.out.println(series.getNode().getStyleClass());
 		        for (final Node line : lineNode) {  
 		        	line.setStyle("-fx-stroke: #"+colorString+"; "
 		        			+ "-fx-stroke-width: 2px;");  
 		        }  
 		        Set<Node> set = this.lookupAll("Label.chart-legend-item");
 		        for (Node n:set) {
-		        	Label l = (Label) n;
-		        	if (l.getText().equals(state.getValueName())) {
-		        		final Circle rectangle = new Circle(5, state.getColor());
-		        		l.setGraphic(rectangle);
-		        	}
+			        	Label l = (Label) n;
+			        	if (l.getText().equals(series.getName())) {
+			        		final Rectangle rectangle = new Rectangle(5, 5, state.getColor());
+			        		System.out.println(state.getColor());
+			        		l.setGraphic(rectangle);
+			        	}
 		        }
 			}
 		}

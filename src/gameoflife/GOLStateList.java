@@ -6,7 +6,8 @@ import javafx.scene.paint.Color;
 
 @SuppressWarnings("serial")
 public class GOLStateList extends StateList<GOLCellType>{
-	GOLStateList() {
+	public GOLStateList() {
+		super("dead");
 		add(new GOLCellType("dead", false, CellType.DEAD));
 		add(new GOLCellType("alive", true, Color.DARKCYAN));
 	}

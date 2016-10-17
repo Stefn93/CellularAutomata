@@ -47,5 +47,10 @@ public class SimpleCell<T extends CellType> implements Cell<T> {
 	public void setRevaluated(boolean revaluated) {
 		this.revaluated = revaluated;
 	}
+
+	public boolean equals(SimpleCell<T> c) {
+		return c.getValue().equals(this.getValue());
+		
+	}
  
 }

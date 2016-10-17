@@ -4,6 +4,7 @@ import java.util.List;
 
 import framework.universe.cell.Cell;
 import framework.universe.cell.CellType;
+import framework.universe.cell.Coordinates;
 import framework.universe.cell.Pattern;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.GridPattern;
@@ -62,7 +63,9 @@ public class GridGui<T extends CellType> extends WorldGui<T>{
 	    		
 	    		int colX = (int) (x/height);
 	    		int colY = (int) (y/height);
-	    		world.addPattern(pattern, new Coordinates2D(colX, colY));
+	    		Coordinates coord = new Coordinates2D(colX, colY);
+	    		
+    			world.addPattern(pattern, coord);
 	    	}
 	    });
 	    ((Pane)node).setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -72,7 +75,8 @@ public class GridGui<T extends CellType> extends WorldGui<T>{
 	    		
 	    		int colX = (int) (x/height);
 	    		int colY = (int) (y/height);
-	    		world.addPattern(pattern, new Coordinates2D(colX, colY));
+	    		Coordinates coord = new Coordinates2D(colX, colY);
+    			world.addPattern(pattern, coord);
 	    	}
 	    });
 	}

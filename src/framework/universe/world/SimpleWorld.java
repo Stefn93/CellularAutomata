@@ -2,6 +2,7 @@ package framework.universe.world;
 
 import framework.simulation.Behaviour;
 import framework.universe.cell.CellType;
+import framework.universe.cell.Coordinates;
 import framework.universe.cell.StateList;
 
 public abstract class SimpleWorld<T extends CellType> implements World<T>{
@@ -27,8 +28,12 @@ public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	public void setGeneration(int generation) {
 		this.generation = generation;
 	}
+	
+	public boolean isDead(Coordinates coord) {
+		return (getCell(coord).getValue().equals(list.getDead()) || getCell(coord) == null);
+	}
 
-
+	
 	@Override
 	public WorldDimension getDimensions() {
 		return dimensions;
