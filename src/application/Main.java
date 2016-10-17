@@ -47,8 +47,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 
-			showChart(populationChart, "Population Chart");
-			showChart(evolutionRateChart, "Evolution Rate");
 			//GridGui<Boolean> gui = 
 			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
@@ -68,6 +66,8 @@ public class Main extends Application {
             primaryStage.setHeight(800);
             primaryStage.setResizable(false);
             primaryStage.show();
+            showChart(populationChart, "Population Chart");
+            showChart(evolutionRateChart, "Evolution Rate");
 
             
         } catch (IOException e) {
