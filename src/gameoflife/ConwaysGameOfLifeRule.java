@@ -10,31 +10,31 @@ import framework.universe2d.Coordinates2D;
 import framework.universe2d.World2D;
 
 public class ConwaysGameOfLifeRule implements Behaviour<GOLCellType> {
-     
-    private static Cell<GOLCellType> EMPTY_CELL = new SimpleCell<GOLCellType>(new GOLCellType("Dead", false));
+    private static GOLStateList list = new GOLStateList();
+    private static Cell<GOLCellType> EMPTY_CELL = new SimpleCell<GOLCellType>(list.get("Dead"));
  
     @Override
     public GOLCellType calculateNewValue(World<GOLCellType> world, Coordinates coordinates) {
         Coordinates2D gridCoordinates = (Coordinates2D)coordinates;
         World2D<GOLCellType> gridWorld = (GOLWorld) world;
+        
         int sum = ((boolean) getUpperNeighbor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0) + ((boolean) getLowerNeighbor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0)
                 + ((boolean) getLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0) + ((boolean) getRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0)
                 + ((boolean) getUpperLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0) + ((boolean) getUpperRightNeighbor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0)
                 + ((boolean) getLowerLeftNeigbhor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0) + ((boolean) getLowerRightNeigbhor(gridWorld, gridCoordinates).getValue().getValue() ? 1 : 0);
         if ((boolean) world.getCell(coordinates).getValue().getValue()) {
         	boolean value = sum == 2 || sum == 3;
-        	if (value) {
-        		return new GOLCellType("Alive", value);
-        	} else {
-        		return new GOLCellType("Dead", value);
-        	}
-        } else {
+        	if (value) 
+        		return list.get("Alive");
+    		else 
+        		return list.get("dead");
+        }
+    	else {
         	boolean value = sum == 3;
-        	if (value) {
-        		return new GOLCellType("Alive", value);
-        	} else {
-        		return new GOLCellType("Dead", value);
-        	}
+        	if (value) 
+        		return list.get("Alive");
+        	else 
+        		return list.get("dead");
         }
     }
      

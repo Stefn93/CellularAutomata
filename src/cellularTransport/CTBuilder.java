@@ -21,7 +21,7 @@ public class CTBuilder {
 		list.add(new AllMoleculesPattern());
 		list.add(new IonsPattern());
 
-		GridGui<CTCellType> gui = new GridGui<CTCellType>(70, new CTDrawer(), new CTWorld(70, 70, new CellularTransportRule()), list);
+		GridGui<CTCellType> gui = new GridGui<CTCellType>(70, new CTWorld(70, 70, new CellularTransportRule()), list);
         gui.setMouseListener(new IonsPattern());
 		
 		return gui;

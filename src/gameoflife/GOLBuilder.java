@@ -21,9 +21,8 @@ public class GOLBuilder {
 		list.add(new ToadPattern());
 		list.add(new SingleCellPattern());
 
-		GridGui<GOLCellType> gui = new GridGui<GOLCellType>(70, new GOLDrawer(), new GOLWorld(70, 70, new ConwaysGameOfLifeRule()), list);
+		GridGui<GOLCellType> gui = new GridGui<GOLCellType>(70, new GOLWorld(70, 70, new ConwaysGameOfLifeRule()), list);
         gui.setMouseListener(new SingleCellPattern());
-		
 		
 		return gui;
 	}
@@ -36,8 +35,8 @@ public class GOLBuilder {
         yAxis.setLabel("Population");
         xAxis.setAnimated(true);
         yAxis.setAnimated(true);
+        
         //creating the chart
-
         final PopulationChart<GOLCellType> chart = new PopulationChart(xAxis, yAxis, new GOLStateList());
         
 		return chart;

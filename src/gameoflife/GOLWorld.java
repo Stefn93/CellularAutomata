@@ -16,13 +16,12 @@ import javafx.scene.chart.PieChart.Data;
 
 public class GOLWorld extends World2D<GOLCellType> {
     public GOLWorld(int height, int length, Behaviour<GOLCellType> rule) {
-        super(height, length, rule);
+        super(new GOLStateList(), height, length, rule);
     }
  
     @Override
     protected Cell<GOLCellType> createNewCell() {
-    	
-        return new SimpleCell<GOLCellType>(new GOLCellType("Dead", false));
+        return new SimpleCell<GOLCellType>(list.get("dead"));
     }
 
 	@Override
@@ -34,7 +33,7 @@ public class GOLWorld extends World2D<GOLCellType> {
 	public void clear() {
 		for (int x = 0; x < dimensions.getLength(); x++) {
 			for (int y = 0; y < dimensions.getHeight(); y++) {
-				this.getCell(new Coordinates2D(x, y)).setValue(new GOLCellType("Dead", false));
+				this.getCell(new Coordinates2D(x, y)).setValue(list.get("dead"));
 			}
 		}
 	}
@@ -49,10 +48,9 @@ public class GOLWorld extends World2D<GOLCellType> {
 		for (int x = 0; x < dimensions.getLength(); x++) {
 			for (int y = 0; y < dimensions.getHeight(); y++) {
 				GOLCellType cell = this.getCell(new Coordinates2D(x, y)).getValue();
-				population.put(cell, population.get(cell)+1);
+				population.put(cell, population.get(cell) + 1);
 			}
 		}
-		System.out.println(population);
 		return population;
 	}
 
