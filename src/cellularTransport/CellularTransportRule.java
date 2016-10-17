@@ -19,14 +19,14 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
         World2D<CTCellType> gridWorld = (CTWorld) world;
         
         int status = ((Integer) world.getCell(gridCoordinates).getValue().getValue());
-        if( status >= 3 || status <= 5) 
+        if( status >= 3 && status <= 5) 
     		return cellMovement(gridCoordinates,gridWorld);
         else 
         	return gridWorld.getCell(gridCoordinates).getValue(); 
     }
     
     private CTCellType cellMovement(Coordinates2D gridCoordinates, World2D<CTCellType> gridWorld){
-    	Double casualDirection = Math.random();
+    	Double casualDirection = Math.random()*100;
     	if((casualDirection % 8) < 1 && ((Integer) getUpperLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue() == 0)){
     		getUpperLeftNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
     		return new CTCellType("Empty", 0);
