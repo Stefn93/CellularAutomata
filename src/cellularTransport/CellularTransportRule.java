@@ -14,56 +14,50 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
 	private static CTStateList stateList = new CTStateList();
     private static Cell<CTCellType> EMPTY_CELL = new SimpleCell<CTCellType>(stateList.get("Empty"));
     private static CTCellType emptyCell = stateList.get("Empty");
+    private CTCellType actualCell;
  
     @Override
     public CTCellType calculateNewValue(World<CTCellType> world, Coordinates coordinates) {
         Coordinates2D gridCoordinates = (Coordinates2D) coordinates;
         World2D<CTCellType> gridWorld = (CTWorld) world;
-                
-        int status = ((Integer) world.getCell(gridCoordinates).getValue().getValue());
-        if( status >= 3 && status <= 5) 
-    		return cellMovement(gridCoordinates,gridWorld);
-        else 
-        	return gridWorld.getCell(gridCoordinates).getValue(); 
+        actualCell = gridWorld.getCell(gridCoordinates).getValue();
+        
+        int status = (Integer) actualCell.getValue();
+        if( status == 3 || status == 4 || status == 5) 
+        	return cellMovement(gridCoordinates,gridWorld);
+        else
+        	return actualCell; 
     }
     
     private CTCellType cellMovement(Coordinates2D gridCoordinates, World2D<CTCellType> gridWorld){
     	
-    	Double casualDirection = Math.random()*100;
+    	Double casualDirection = Math.random()*1000;
+    	Cell<CTCellType> destinationCell = new SimpleCell<CTCellType>(actualCell);
     	
-    	if((casualDirection % 8) < 1 && ((Integer) getUpperLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getUpperLeftNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
+    	if((casualDirection % 8) < 1)
+    		destinationCell = getUpperLeftNeighbor(gridWorld, gridCoordinates);
+    	else if((casualDirection % 8) < 2)
+    		destinationCell = getUpperNeighbor(gridWorld, gridCoordinates);
+    	else if((casualDirection % 8) < 3)
+    		destinationCell = getUpperRightNeighbor(gridWorld, gridCoordinates);
+    	else if((casualDirection % 8) < 4)
+    		destinationCell = getRightNeighbor(gridWorld, gridCoordinates);
+    	else if((casualDirection % 8) < 5)
+    		destinationCell = getLowerRightNeighbor(gridWorld, gridCoordinates);
+    	else if((casualDirection % 8) < 6)
+    		destinationCell = getLowerNeighbor(gridWorld, gridCoordinates);
+    	else if((casualDirection % 8) < 7)
+    		destinationCell = getLowerLeftNeighbor(gridWorld, gridCoordinates);
+    	else if((casualDirection % 8) < 8)
+    		destinationCell = getLeftNeighbor(gridWorld, gridCoordinates);
+    	
+    	if(destinationCell.getValue().getValueName().equals("Empty")){
+    		destinationCell.setValue(actualCell);
     		return emptyCell;
     	}
-    	else if((casualDirection % 8) < 2 && ((Integer) getUpperNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getUpperNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
-    		return emptyCell;
-    	}
-    	else if((casualDirection % 8) < 3 && ((Integer) getUpperRightNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getUpperRightNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
-    		return emptyCell;
-    	}
-    	else if((casualDirection % 8) < 4 && ((Integer) getRightNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getRightNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
-    		return emptyCell;
-    	}
-    	else if((casualDirection % 8) < 5 && ((Integer) getLowerRightNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getLowerRightNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
-    		return emptyCell;
-    	}
-    	else if((casualDirection % 8) < 6 && ((Integer) getLowerNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getLowerNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
-    		return emptyCell;
-    	}
-    	else if((casualDirection % 8) < 7 && ((Integer) getLowerLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getLowerLeftNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
-    		return emptyCell;
-    	}
-    	else if((casualDirection % 8) < 8 && ((Integer) getLeftNeighbor(gridWorld, gridCoordinates).getValue().getValue()) == 0){
-    		getLeftNeighbor(gridWorld, gridCoordinates).setValue(gridWorld.getCell(gridCoordinates).getValue());
-    		return emptyCell;
-    	}
-    	else return gridWorld.getCell(gridCoordinates).getValue(); 
+    	else return actualCell;
+    		
+    	
     }
     
     private Cell<CTCellType> getUpperNeighbor(World2D<CTCellType> world, Coordinates2D coordinates) {
