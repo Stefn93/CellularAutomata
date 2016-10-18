@@ -29,7 +29,6 @@ public class PopulationChart<T extends CellType> extends LineChart<Integer, Inte
 		        getData().add(series);
 		        series.getNode().getStyleClass().add(series.getName().replace(" ", "-"));
 		        Set<Node> lineNode = this.lookupAll("."+series.getName().replace(" ", "-"));  
-		        System.out.println(series.getNode().getStyleClass());
 		        for (final Node line : lineNode) {  
 		        	line.setStyle("-fx-stroke: #"+colorString+"; "
 		        			+ "-fx-stroke-width: 2px;");  
@@ -39,7 +38,7 @@ public class PopulationChart<T extends CellType> extends LineChart<Integer, Inte
 			        	Label l = (Label) n;
 			        	if (l.getText().equals(series.getName())) {
 			        		final Rectangle rectangle = new Rectangle(5, 5, state.getColor());
-			        		System.out.println(state.getColor());
+			        		//System.out.println(state.getColor());
 			        		l.setGraphic(rectangle);
 			        	}
 		        }

@@ -3,8 +3,8 @@ package cellularTransport;
 import java.util.HashMap;
 import java.util.Map;
 
-
-
+import cellularTransport.patternsCT.MembranePattern;
+import cellularTransport.patternsCT.ProteinChannelPattern;
 import framework.simulation.Behaviour;
 import framework.universe.cell.Cell;
 import framework.universe.cell.SimpleCell;
@@ -24,11 +24,15 @@ public class CTWorld extends World2D<CTCellType> {
 
 	@Override
 	public void defaultState() {
-		for(int i = 0; i < dimensions.getHeight(); i++){
-			if(i % 10 == 0)
-				addPattern(new ProteinChannelPattern(), new Coordinates2D(34, i));
-			else
-				addPattern(new MembranePattern(), new Coordinates2D(34, i));
+		for(int i = 0; i < dimensions.getLength(); i++){
+			if(i % 10 == 4) {
+				addPattern(new ProteinChannelPattern(), new Coordinates2D(i, 34));
+				addPattern(new ProteinChannelPattern(), new Coordinates2D(i, 35));
+			}
+			else {
+				addPattern(new MembranePattern(), new Coordinates2D(i, 34));
+				addPattern(new MembranePattern(), new Coordinates2D(i, 35));
+			}
 		}
 	}
 

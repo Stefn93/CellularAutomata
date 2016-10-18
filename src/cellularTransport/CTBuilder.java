@@ -3,16 +3,14 @@ package cellularTransport;
 import java.util.ArrayList;
 import java.util.List;
 
+import cellularTransport.patternsCT.BPMPattern;
+import cellularTransport.patternsCT.IonsPattern;
+import cellularTransport.patternsCT.SPMPattern;
 import framework.gui.GridGui;
 import framework.gui.WorldGui;
 import framework.simulation.PopulationChart;
 import framework.universe2d.GridPattern;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
 
 public class CTBuilder {
 
@@ -20,6 +18,8 @@ public class CTBuilder {
 		List<GridPattern<CTCellType>> list = new ArrayList<GridPattern<CTCellType>>();
 		list.add(new AllMoleculesPattern());
 		list.add(new IonsPattern());
+		list.add(new BPMPattern());
+		list.add(new SPMPattern());
 
 		GridGui<CTCellType> gui = new GridGui<CTCellType>(70, new CTWorld(70, 70, new CellularTransportRule()), list);
         gui.setMouseListener(new IonsPattern());

@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 
 @SuppressWarnings("serial")
 public class CTStateList extends StateList<CTCellType>{
-	CTStateList() {
+	public CTStateList() {
 		super("Empty");
 		add(new CTCellType("Empty", 0, Color.BLACK));
 		add(new CTCellType("Lipids", 1, Color.RED));
