@@ -33,31 +33,58 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
     	
     	Double casualDirection = Math.random()*1000;
     	Cell<CTCellType> destinationCell = new SimpleCell<CTCellType>(actualCell);
+    	Coordinates2D newCoordinates = gridCoordinates;
     	
-    	if((casualDirection % 8) < 1)
+    	if((casualDirection % 8) < 1){
     		destinationCell = getUpperLeftNeighbor(gridWorld, gridCoordinates);
-    	else if((casualDirection % 8) < 2)
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX()-1, gridCoordinates.getY()-1);
+    	}
+    	else if((casualDirection % 8) < 2){
     		destinationCell = getUpperNeighbor(gridWorld, gridCoordinates);
-    	else if((casualDirection % 8) < 3)
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX(), gridCoordinates.getY()-1);
+    	}
+    	else if((casualDirection % 8) < 3) {
     		destinationCell = getUpperRightNeighbor(gridWorld, gridCoordinates);
-    	else if((casualDirection % 8) < 4)
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX()+1, gridCoordinates.getY()-1);
+    	}
+    	else if((casualDirection % 8) < 4) {
     		destinationCell = getRightNeighbor(gridWorld, gridCoordinates);
-    	else if((casualDirection % 8) < 5)
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX()+1, gridCoordinates.getY());
+    	}
+    	else if((casualDirection % 8) < 5) {
     		destinationCell = getLowerRightNeighbor(gridWorld, gridCoordinates);
-    	else if((casualDirection % 8) < 6)
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX()+1, gridCoordinates.getY()+1);
+    	}
+    	else if((casualDirection % 8) < 6) {
     		destinationCell = getLowerNeighbor(gridWorld, gridCoordinates);
-    	else if((casualDirection % 8) < 7)
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX(), gridCoordinates.getY()+1);
+    	}
+    	else if((casualDirection % 8) < 7) {
     		destinationCell = getLowerLeftNeighbor(gridWorld, gridCoordinates);
-    	else if((casualDirection % 8) < 8)
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX()-1, gridCoordinates.getY()+1);
+    	}
+    	else if((casualDirection % 8) < 8) {
     		destinationCell = getLeftNeighbor(gridWorld, gridCoordinates);
+    		newCoordinates = new Coordinates2D(gridCoordinates.getX()-1, gridCoordinates.getY());
+    	}
     	
-    	if(destinationCell.getValue().getValueName().equals("Empty")){
-    		destinationCell.setValue(actualCell);
+    	if(destinationCell.getValue().getValueName().equals("Empty") && checkDimensions(newCoordinates, gridWorld)){
+    		//destinationCell.setValue(actualCell);
+    		gridWorld.nextStateCell(actualCell, newCoordinates);
+    		gridWorld.nextStateCell(emptyCell, gridCoordinates);
     		return emptyCell;
     	}
     	else return actualCell;
     		
     	
+    }
+    
+    private boolean checkDimensions(Coordinates2D coordinates, World2D<CTCellType> world){
+    	if(coordinates.getX() > 0 && coordinates.getX() < world.getDimensions().getLength() && 
+    	   coordinates.getY() > 0 && coordinates.getY() < world.getDimensions().getHeight())
+    		return true;
+    	else
+    		return false;
     }
     
     private Cell<CTCellType> getUpperNeighbor(World2D<CTCellType> world, Coordinates2D coordinates) {

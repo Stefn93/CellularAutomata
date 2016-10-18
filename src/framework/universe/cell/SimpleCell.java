@@ -50,7 +50,6 @@ public class SimpleCell<T extends CellType> implements Cell<T> {
 
 	public boolean equals(SimpleCell<T> c) {
 		return c.getValue().equals(this.getValue());
-		
 	}
  
 }

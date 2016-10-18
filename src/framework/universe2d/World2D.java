@@ -48,16 +48,22 @@ public abstract class World2D<x extends CellType> extends SimpleWorld<x> {
 	public void nextState() {
 		evolutionRate = 0;
 		for (int i = 0; i < dimensions.getLength(); i++) {
-			for (int j = 0; j < dimensions.getHeight(); j++) {
+			for (int j = 0; j < dimensions.getHeight(); j++) {	
 				grid[i][j].revaluateCell((x) behaviour.calculateNewValue(this, new Coordinates2D(i, j)));
 			}
 		}
 		for (int i = 0; i < dimensions.getLength(); i++) {
 			for (int j = 0; j < dimensions.getHeight(); j++) {
-				if(grid[i][j].confirmRevaluation())
-					evolutionRate++;
+				if(!((SimpleCell) grid[i][j]).isRevaluated())
+					if(grid[i][j].confirmRevaluation())
+						evolutionRate++;
 			}
 		}
+	}
+	
+	public void nextStateCell(CellType cell, Coordinates2D coordinates) {
+		grid[coordinates.getX()][coordinates.getY()].revaluateCell((x) cell);
+		grid[coordinates.getX()][coordinates.getY()].confirmRevaluation();
 	}
 
 	@Override
