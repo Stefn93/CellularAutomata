@@ -50,18 +50,18 @@ public class SimulationThread<x extends CellType> extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				if (!paused) {
-					Platform.runLater(new Runnable() {
-						public void run() {
+				Platform.runLater(new Runnable() {
+					public void run() {
+						if (!paused) {
 							controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
 							controller.setSimulationInfo(world.getInfo());
 							populationChart.updateInfo(generation, world.getPopulationStatus());
 							evolutionChart.updateInfo(generation, world.getEvolutionRate());
 							incrementGeneration();
 						}
-					});
-					SimulationThread.sleep(delay);
-				}
+					}
+				});
+				SimulationThread.sleep(delay);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -80,15 +80,12 @@ public class SimulationThread<x extends CellType> extends Thread {
 		return world;
 	}
 
-	public boolean isPaused() {
-		return paused;
+	public void switchPause() {
+		if(paused == true)
+			paused = false;
+		else paused = true;
 	}
 
-	public void setPaused(boolean paused) {
-		this.paused = paused;
-	}
-
-	
 	public void reset() {
 		paused = false;
 		generation = 0;

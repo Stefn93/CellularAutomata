@@ -74,7 +74,7 @@ public class SimulationController implements Initializable{
     	start.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
     		@Override
     		public void handle(MouseEvent e){
-    			simulation.setPaused(!simulation.isPaused());
+    			simulation.switchPause();
     		}
     	});
     }

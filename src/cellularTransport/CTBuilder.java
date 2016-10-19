@@ -3,6 +3,7 @@ package cellularTransport;
 import java.util.ArrayList;
 import java.util.List;
 
+import cellularTransport.patterns.AllMolecules;
 import cellularTransport.patterns.Cl;
 import cellularTransport.patterns.Glucose;
 import cellularTransport.patterns.Oxygen;
@@ -16,7 +17,7 @@ public class CTBuilder {
 
 	public static WorldGui<CTCellType> build() {
 		List<GridPattern<CTCellType>> list = new ArrayList<GridPattern<CTCellType>>();
-		list.add(new AllMoleculesPattern());
+		list.add(new AllMolecules());
 		list.add(new Cl());
 		list.add(new Glucose());
 		list.add(new Oxygen());

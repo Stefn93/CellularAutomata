@@ -56,6 +56,11 @@ public class CTWorld extends World2D<CTCellType> {
 
 	@Override
 	public Map<CTCellType, Integer> getPopulationStatus() {
+		
+		incrementGeneration();
+		if(getGeneration() % 100 == 0)
+			atp += 10;
+		
 		Map<CTCellType, Integer> population = new HashMap<CTCellType, Integer>();
 		for (CTCellType c:list){
 			population.put(c, new Integer(0));
@@ -63,15 +68,9 @@ public class CTWorld extends World2D<CTCellType> {
 		for (int x = 0; x < dimensions.getLength(); x++) {
 			for (int y = 0; y < dimensions.getHeight(); y++) {
 				CTCellType cell = this.getCell(new Coordinates2D(x, y)).getValue();
-				
 				population.put(cell, population.get(cell) + 1);
 			}
 		}
-		
-		incrementGeneration();
-		if(getGeneration() % 100 == 0)
-        	atp += 5;
-        
 		return population;
 	}
 	
@@ -89,7 +88,7 @@ public class CTWorld extends World2D<CTCellType> {
 
 	@Override
 	public String getInfo() {
-		return "available ATP: " + this.atp;
+		return "Available ATP: " + this.atp;
 	}
  
 }

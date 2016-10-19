@@ -36,18 +36,9 @@ public class Main extends Application {
 	private static PopulationChart populationChart;
 	private static EvolutionRateChart evolutionRateChart;
 	
-	//numero di caselle di un colore entro un raggio dalle altre caselle dello stesso colore 
-	//wa-tor pip
-	//gli automi cellulare riconsiderare - astrobiologica -
-	// forma di vita come esemplari che competono o forma di vita come liquidi che riconoscono ciò che sono e non sono.
-	//coacervato 
-	// pag 241
-	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-
-			//GridGui<Boolean> gui = 
 			// Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));

@@ -17,6 +17,10 @@ public abstract class SimpleWorld<T extends CellType> implements World<T>{
 		return evolutionRate;
 	}
 	
+	public void incrementEvolutionRate(){
+		evolutionRate++;
+	}
+	
 	public SimpleWorld(Behaviour<T> behaviour) {
 		this.behaviour = behaviour;
 	}

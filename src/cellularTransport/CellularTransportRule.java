@@ -72,6 +72,7 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
     	if (destinationCell.getValue().getValueName().equals("Empty") && checkDimensions(newCoordinates, ctWorld)){
     		ctWorld.nextStateCell(actualCell, newCoordinates);
     		ctWorld.nextStateCell(emptyCell, actualCoordinates);
+    		ctWorld.incrementEvolutionRate();
     		return emptyCell;
     	}
     	else if ((Integer) actualCell.getValue() == 2 && (Integer) destinationCell.getValue().getValue() == 5 && gradientCompensationNeeded(actualCell, actualCoordinates, newCoordinates)) 
@@ -109,6 +110,7 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
 			ctWorld.nextStateCell(actualCell, new Coordinates2D(newC.getX(), newC.getY() - 2));
 			ctWorld.nextStateCell(emptyCell, oldC);
 		}
+    	ctWorld.incrementEvolutionRate();
 		return emptyCell;
     }
     
