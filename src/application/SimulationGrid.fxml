@@ -87,7 +87,7 @@
                <font>
                   <Font size="17.0" />
                </font></Label>
-            <Slider fx:id="delay" blockIncrement="200.0" majorTickUnit="500.0" max="3100.0" min="100.0" minorTickCount="100" showTickLabels="true" showTickMarks="true" value="500.0">
+            <Slider fx:id="delay" blockIncrement="100.0" majorTickUnit="500.0" max="2050.0" min="50.0" minorTickCount="100" showTickLabels="true" showTickMarks="true" value="100.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
