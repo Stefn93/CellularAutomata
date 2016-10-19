@@ -7,9 +7,9 @@ public class AllMoleculesPattern extends GridPattern<CTCellType> {
     @Override
     public CTCellType[][] get() {
     	CTStateList list = new CTStateList();
-    	CTCellType f = list.get("Big Polar Molecules");
-    	CTCellType t = list.get("Small Polar Molecules");
-    	CTCellType j = list.get("Ions");
-        return new CTCellType[][] {{f, t, f, t}, {j, t, j, f}};
+    	CTCellType f = list.get("Glucose");
+    	CTCellType t = list.get("Oxygen");
+    	CTCellType j = list.get("Cl");
+        return new CTCellType[][] {{f, f, f, f}, {t, t, t, t}, {j, j, j, j}};
     }
 }

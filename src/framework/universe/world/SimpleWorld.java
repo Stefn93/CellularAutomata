@@ -12,7 +12,7 @@ public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	protected int evolutionRate;
 	protected StateList<T> list;
 
-
+	
 	public int getEvolutionRate(){
 		return evolutionRate;
 	}
@@ -32,7 +32,6 @@ public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	public boolean isDead(Coordinates coord) {
 		return (getCell(coord).getValue().equals(list.getDead()) || getCell(coord) == null);
 	}
-
 	
 	@Override
 	public WorldDimension getDimensions() {

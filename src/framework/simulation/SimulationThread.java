@@ -6,6 +6,7 @@ import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
 import framework.universe.cell.CellType;
 import framework.universe.cell.Pattern;
+import framework.universe.world.SimpleWorld;
 import framework.universe.world.World;
 import javafx.application.Platform;
 import javafx.scene.chart.PieChart;
@@ -26,7 +27,7 @@ public class SimulationThread<x extends CellType> extends Thread {
 	protected PopulationChart<x> populationChart;
 	protected EvolutionRateChart evolutionChart;
 	private int generation = 0;
-	private int delay = 500;
+	private int delay = 50;
 	private boolean paused;
 	
 	public SimulationThread(WorldGui<x> gui, PopulationChart<x> populationChart, EvolutionRateChart chart) {
@@ -40,6 +41,7 @@ public class SimulationThread<x extends CellType> extends Thread {
 		gui.showWorld();
 		generation++;
 		world.nextState();
+		
 	}
 	
 	public int getGeneration() {

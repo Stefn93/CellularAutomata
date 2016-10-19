@@ -26,7 +26,6 @@ public abstract class WorldGui<T extends CellType> {
 		return node;
 	}
 	
-	
 	public List<? extends Pattern> getPatternList() {
 		return patternList;
 	}

@@ -4,12 +4,11 @@ import cellularTransport.CTCellType;
 import cellularTransport.CTStateList;
 import framework.universe2d.GridPattern;
 
-public class IonsPattern extends GridPattern<CTCellType>{
+public class GlucoseATPCarrier extends GridPattern<CTCellType> {
 
 	@Override
 	public CTCellType[][] get() {
-		return new CTCellType[][] {{new CTStateList().get("Ions")}};
+		return new CTCellType[][] {{new CTStateList().get("Glucose ATP Carrier")}, {new CTStateList().get("Glucose ATP Carrier")}};
 	}
-
+	
 }
-

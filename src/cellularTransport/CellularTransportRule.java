@@ -15,7 +15,7 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
     private static Cell<CTCellType> EMPTY_CELL = new SimpleCell<CTCellType>(stateList.get("Empty"));
     private static CTCellType emptyCell = stateList.get("Empty");
     private CTCellType actualCell;
-    private World2D<CTCellType> ctWorld;
+    private CTWorld ctWorld;
  
     @Override
     public CTCellType calculateNewValue(World<CTCellType> world, Coordinates coordinates) {
@@ -24,7 +24,7 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
         actualCell = ctWorld.getCell(gridCoordinates).getValue();
         
         int status = (Integer) actualCell.getValue();
-        if( status == 3 || status == 4 || status == 5) 
+        if( status == 2 || status == 3 || status == 4) 
         	return cellMovement(gridCoordinates);
         else
         	return actualCell; 
@@ -74,39 +74,42 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
     		ctWorld.nextStateCell(emptyCell, actualCoordinates);
     		return emptyCell;
     	}
-    	else if ((Integer) actualCell.getValue() > 2 && ((Integer) destinationCell.getValue().getValue() == 1 || (Integer) destinationCell.getValue().getValue() == 2) && gradientCompensationNeeded(actualCell, actualCoordinates, newCoordinates)) 
+    	else if ((Integer) actualCell.getValue() == 2 && (Integer) destinationCell.getValue().getValue() == 5 && gradientCompensationNeeded(actualCell, actualCoordinates, newCoordinates)) 
     	{
-    		if (((Integer) actualCell.getValue() == 5 || (Integer) actualCell.getValue() == 3) && (Integer) destinationCell.getValue().getValue() == 2) 
-    		{
-    			if(detectMovementDirection(actualCoordinates, newCoordinates).equals("Out") && ctWorld.getCell(new Coordinates2D(newCoordinates.getX(), newCoordinates.getY()+2)).getValue().getValueName().equals("Empty")) 
-    			{
-    				ctWorld.nextStateCell(actualCell, new Coordinates2D(newCoordinates.getX(), newCoordinates.getY() + 2));
-    				ctWorld.nextStateCell(emptyCell, actualCoordinates);
-    			}
-    			else if (detectMovementDirection(actualCoordinates, newCoordinates).equals("In") && ctWorld.getCell(new Coordinates2D(newCoordinates.getX(), newCoordinates.getY()-2)).getValue().getValueName().equals("Empty")) 
-    			{
-    				ctWorld.nextStateCell(actualCell, new Coordinates2D(newCoordinates.getX(), newCoordinates.getY() - 2));
-    				ctWorld.nextStateCell(emptyCell, actualCoordinates);
-    			}
-    			return emptyCell;
-    		}
-    		else if ((Integer) actualCell.getValue() == 4 && (Integer) destinationCell.getValue().getValue() == 1){
-    			if(detectMovementDirection(actualCoordinates, newCoordinates).equals("Out") && ctWorld.getCell(new Coordinates2D(newCoordinates.getX(), newCoordinates.getY()+2)).getValue().getValueName().equals("Empty")) 
-    			{
-    				ctWorld.nextStateCell(actualCell, new Coordinates2D(newCoordinates.getX(), newCoordinates.getY() + 2));
-    				ctWorld.nextStateCell(emptyCell, actualCoordinates);
-    			}
-    			else if (detectMovementDirection(actualCoordinates, newCoordinates).equals("In") && ctWorld.getCell(new Coordinates2D(newCoordinates.getX(), newCoordinates.getY()-2)).getValue().getValueName().equals("Empty")) 
-    			{
-    				ctWorld.nextStateCell(actualCell, new Coordinates2D(newCoordinates.getX(), newCoordinates.getY() - 2));
-    				ctWorld.nextStateCell(emptyCell, actualCoordinates);
-    			}
-    			return emptyCell;
-    		}
-    		return actualCell;
+    		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
+    	}
+    	else if ((Integer) actualCell.getValue() == 3 && (Integer) destinationCell.getValue().getValue() == 1 && gradientCompensationNeeded(actualCell, actualCoordinates, newCoordinates)) 
+    	{
+    		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
+    	}
+    	else if ((Integer) actualCell.getValue() == 4 && (Integer) destinationCell.getValue().getValue() == 6 && gradientCompensationNeeded(actualCell, actualCoordinates, newCoordinates)) 
+    	{
+    		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
+    	}
+    	else if((Integer) actualCell.getValue() == 2 && (Integer) destinationCell.getValue().getValue() == 7 && ctWorld.getAtp() > 0){
+    		ctWorld.decrementATP();
+    		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
+    	}
+    	else if((Integer) actualCell.getValue() == 4 && (Integer) destinationCell.getValue().getValue() == 8 && ctWorld.getAtp() > 0){
+    		ctWorld.decrementATP();
+    		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
     	}
     	else return actualCell;
     		
+    }
+    
+    private CTCellType carryOutTransport(Coordinates2D oldC, Coordinates2D newC, CTCellType actualCell){
+    	if(detectMovementDirection(oldC, newC).equals("Out") && ctWorld.getCell(new Coordinates2D(newC.getX(), newC.getY()+2)).getValue().getValueName().equals("Empty")) 
+		{
+			ctWorld.nextStateCell(actualCell, new Coordinates2D(newC.getX(), newC.getY() + 2));
+			ctWorld.nextStateCell(emptyCell, oldC);
+		}
+		else if (detectMovementDirection(oldC, newC).equals("In") && ctWorld.getCell(new Coordinates2D(newC.getX(), newC.getY()-2)).getValue().getValueName().equals("Empty")) 
+		{
+			ctWorld.nextStateCell(actualCell, new Coordinates2D(newC.getX(), newC.getY() - 2));
+			ctWorld.nextStateCell(emptyCell, oldC);
+		}
+		return emptyCell;
     }
     
     private boolean gradientCompensationNeeded(CTCellType actualCell, Coordinates2D oldC, Coordinates2D newC){
@@ -197,8 +200,5 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
 	public void calculateGrid(CellType value, World<CTCellType> world, Coordinates coordinates) {
 		
 	}
-
-
-
  
 }

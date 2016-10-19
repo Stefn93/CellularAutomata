@@ -4,11 +4,11 @@ import cellularTransport.CTCellType;
 import cellularTransport.CTStateList;
 import framework.universe2d.GridPattern;
 
-public class BPMPattern extends GridPattern<CTCellType> {
+public class Glucose extends GridPattern<CTCellType> {
 
 	@Override
 	public CTCellType[][] get() {
-		return new CTCellType[][] {{new CTStateList().get("Big Polar Molecules")}};
+		return new CTCellType[][] {{new CTStateList().get("Glucose")}};
 	}
 
 }
