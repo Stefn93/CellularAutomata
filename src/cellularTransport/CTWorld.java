@@ -3,11 +3,11 @@ package cellularTransport;
 import java.util.HashMap;
 import java.util.Map;
 
-import cellularTransport.patternsCT.Membrane;
-import cellularTransport.patternsCT.ClATPCarrier;
-import cellularTransport.patternsCT.ClCarrier;
-import cellularTransport.patternsCT.GlucoseATPCarrier;
-import cellularTransport.patternsCT.GlucoseCarrier;
+import cellularTransport.patterns.ClATPCarrier;
+import cellularTransport.patterns.ClCarrier;
+import cellularTransport.patterns.GlucoseATPCarrier;
+import cellularTransport.patterns.GlucoseCarrier;
+import cellularTransport.patterns.Membrane;
 import framework.simulation.Behaviour;
 import framework.universe.cell.Cell;
 import framework.universe.cell.SimpleCell;
@@ -85,6 +85,11 @@ public class CTWorld extends World2D<CTCellType> {
 	
 	public void decrementATP(){
 		atp--;
+	}
+
+	@Override
+	public String getInfo() {
+		return "available ATP: " + this.atp;
 	}
  
 }

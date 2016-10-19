@@ -37,6 +37,11 @@ public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	public WorldDimension getDimensions() {
 		return dimensions;
 	}
+	
+	@Override
+	public String getInfo(){
+		return null;
+	}
 
 }
 

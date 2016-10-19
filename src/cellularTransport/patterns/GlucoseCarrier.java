@@ -1,4 +1,4 @@
-package cellularTransport.patternsCT;
+package cellularTransport.patterns;
 
 import cellularTransport.CTCellType;
 import cellularTransport.CTStateList;

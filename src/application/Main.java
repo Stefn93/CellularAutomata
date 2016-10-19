@@ -62,12 +62,12 @@ public class Main extends Application {
             // Show the scene containing the root layout.
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setWidth(1024);
-            primaryStage.setHeight(800);
+            primaryStage.setWidth(1280);
+            primaryStage.setHeight(900);
             primaryStage.setResizable(false);
             primaryStage.show();
             showChart(populationChart, "Population Chart");
-            showChart(evolutionRateChart, "Evolution Rate");
+            showChart(evolutionRateChart, "Evolution Rate Chart");
 
             
         } catch (IOException e) {
@@ -76,19 +76,12 @@ public class Main extends Application {
 	}
 	
 	private void showChart(LineChart chart, String name) {
-			Stage stage = new Stage();
-	        Scene scene = new Scene(new Group());
-	        
+		
 			chart.setCreateSymbols(false);
 			chart.setTitle(name);
-	        stage.setTitle(name);
 			chart.setAnimated(true);
 			chart.autosize();
-	        stage.setWidth(550);
-	        stage.setHeight(550);
-	        ((Group) scene.getRoot()).getChildren().add(chart);
-	        stage.setScene(scene);
-	        stage.show();
+			controller.getGraphVBox().getChildren().add(chart);
 	}
 
 
@@ -109,16 +102,14 @@ public class Main extends Application {
 
 
 	public static void main(String[] args) throws Exception {
-        final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
-        
+		
         //GAME OF LIFE
         //Main.setSimulation(GOLBuilder.build());
-		//Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(xAxis, yAxis));
+		//Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
         
         //CELLULAR MEMBRANE
         Main.setSimulation(CTBuilder.build());
-        Main.setGraph(CTBuilder.buildPopulationChart(), new EvolutionRateChart(xAxis,yAxis)); 
+        Main.setGraph(CTBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis())); 
         
 		Main.launch(args);
 	}

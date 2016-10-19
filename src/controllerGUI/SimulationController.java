@@ -16,7 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 public class SimulationController implements Initializable{
 	
@@ -30,6 +32,11 @@ public class SimulationController implements Initializable{
     private Label generationLabel;
     @FXML
     private ChoiceBox<? extends Pattern> patternChoice; 
+    @FXML
+    private TextField infoTextField;
+    @FXML
+    private VBox graphVBox;
+
 
 	private SimulationThread<GOLCellType> simulation;
 	
@@ -93,5 +100,13 @@ public class SimulationController implements Initializable{
 	public Label getGenerationLabel() {
 		return generationLabel;
 	}
+	
+	public void setSimulationInfo(String s){
+		infoTextField.setText(s + "\n");
+	}
     
+	public VBox getGraphVBox() {
+		return graphVBox;
+	}
+	
 }

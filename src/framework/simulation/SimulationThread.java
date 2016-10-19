@@ -27,7 +27,7 @@ public class SimulationThread<x extends CellType> extends Thread {
 	protected PopulationChart<x> populationChart;
 	protected EvolutionRateChart evolutionChart;
 	private int generation = 0;
-	private int delay = 50;
+	private int delay = 50; 		//if delay goes under 100, the simulation may slow down.
 	private boolean paused;
 	
 	public SimulationThread(WorldGui<x> gui, PopulationChart<x> populationChart, EvolutionRateChart chart) {
@@ -41,7 +41,6 @@ public class SimulationThread<x extends CellType> extends Thread {
 		gui.showWorld();
 		generation++;
 		world.nextState();
-		
 	}
 	
 	public int getGeneration() {
@@ -49,17 +48,16 @@ public class SimulationThread<x extends CellType> extends Thread {
 	}
 	
 	public void run() {
-		//gui.showWorld(world);
 		while(true) {
 			try {
 				if (!paused) {
 					Platform.runLater(new Runnable() {
 						public void run() {
 							controller.getGenerationLabel().setText("Generation n°" + Integer.toString(generation));
+							controller.setSimulationInfo(world.getInfo());
 							populationChart.updateInfo(generation, world.getPopulationStatus());
 							evolutionChart.updateInfo(generation, world.getEvolutionRate());
 							incrementGeneration();
-
 						}
 					});
 					SimulationThread.sleep(delay);

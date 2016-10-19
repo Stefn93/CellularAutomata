@@ -53,6 +53,5 @@ public class GOLWorld extends World2D<GOLCellType> {
 		}
 		return population;
 	}
-
  
 }

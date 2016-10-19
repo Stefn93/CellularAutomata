@@ -32,7 +32,7 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
     
     private CTCellType cellMovement(Coordinates2D actualCoordinates){
     	
-    	Double casualDirection = Math.random()*1000;
+    	Double casualDirection = Math.random()*150;
     	Cell<CTCellType> destinationCell = new SimpleCell<CTCellType>(actualCell);
     	Coordinates2D newCoordinates = actualCoordinates;
     	

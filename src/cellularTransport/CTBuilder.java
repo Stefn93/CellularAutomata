@@ -3,9 +3,9 @@ package cellularTransport;
 import java.util.ArrayList;
 import java.util.List;
 
-import cellularTransport.patternsCT.Glucose;
-import cellularTransport.patternsCT.Cl;
-import cellularTransport.patternsCT.Oxygen;
+import cellularTransport.patterns.Cl;
+import cellularTransport.patterns.Glucose;
+import cellularTransport.patterns.Oxygen;
 import framework.gui.GridGui;
 import framework.gui.WorldGui;
 import framework.simulation.PopulationChart;
