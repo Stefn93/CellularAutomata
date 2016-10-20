@@ -59,7 +59,7 @@ public class CTWorld extends World2D<CTCellType> {
 		
 		incrementGeneration();
 		if(getGeneration() % 100 == 0)
-			atp += 10;
+			atp += 5;
 		
 		Map<CTCellType, Integer> population = new HashMap<CTCellType, Integer>();
 		for (CTCellType c:list){

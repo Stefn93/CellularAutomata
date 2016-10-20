@@ -91,6 +91,7 @@ public class SimulationThread<x extends CellType> extends Thread {
 		generation = 0;
 		world.reset();
 		populationChart.reset();
+		evolutionChart.reset();
 	}
 
 	public List<? extends Pattern> getPatterns() {

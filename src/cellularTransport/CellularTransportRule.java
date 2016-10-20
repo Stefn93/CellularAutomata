@@ -87,11 +87,11 @@ public class CellularTransportRule implements Behaviour<CTCellType> {
     	{
     		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
     	}
-    	else if((Integer) actualCell.getValue() == 2 && (Integer) destinationCell.getValue().getValue() == 7 && ctWorld.getAtp() > 0){
+    	else if((Integer) actualCell.getValue() == 2 && (Integer) destinationCell.getValue().getValue() == 7 && ctWorld.getAtp() > 0 && !gradientCompensationNeeded(actualCell, actualCoordinates, newCoordinates)){
     		ctWorld.decrementATP();
     		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
     	}
-    	else if((Integer) actualCell.getValue() == 4 && (Integer) destinationCell.getValue().getValue() == 8 && ctWorld.getAtp() > 0){
+    	else if((Integer) actualCell.getValue() == 4 && (Integer) destinationCell.getValue().getValue() == 8 && ctWorld.getAtp() > 0 && !gradientCompensationNeeded(actualCell, actualCoordinates, newCoordinates)){
     		ctWorld.decrementATP();
     		return carryOutTransport(actualCoordinates, newCoordinates, actualCell);
     	}
