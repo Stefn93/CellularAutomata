@@ -52,6 +52,7 @@ public class CTWorld extends World2D<CTCellType> {
 				this.getCell(new Coordinates2D(x, y)).setValue(list.get("Empty"));
 			}
 		}
+		atp = 10;
 	}
 
 	@Override
