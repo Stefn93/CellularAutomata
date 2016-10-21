@@ -83,7 +83,10 @@ public class SimulationThread<x extends CellType> extends Thread {
 	public void switchPause() {
 		if(paused == true)
 			paused = false;
-		else paused = true;
+		else {
+			paused = true;
+			
+		}
 	}
 
 	public void reset() {
@@ -104,5 +107,10 @@ public class SimulationThread<x extends CellType> extends Thread {
 
 	public void setGuiController(SimulationController controller) {
 		this.controller = controller;
+	}
+
+	public void save() {
+		// TODO Auto-generated method stub
+		
 	}
 }

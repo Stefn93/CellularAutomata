@@ -36,6 +36,8 @@ public class SimulationController implements Initializable{
     private TextField infoTextField;
     @FXML
     private VBox graphVBox;
+    @FXML
+    private Button saveButton;
 
 
 	private SimulationThread<GOLCellType> simulation;
@@ -75,6 +77,7 @@ public class SimulationController implements Initializable{
     		@Override
     		public void handle(MouseEvent e){
     			simulation.switchPause();
+    			saveButton.setDisable(saveButton.isDisabled());
     		}
     	});
     }
@@ -93,6 +96,15 @@ public class SimulationController implements Initializable{
     		@Override
     		public void changed(ObservableValue<? extends Pattern> ol, Pattern oldVal, Pattern newVal) {
     			simulation.getGui().setMouseListener(patternChoice.getSelectionModel().getSelectedItem());    			
+    		}
+    	});
+    }
+    
+    private void saveListener() {
+    	saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+    		@Override
+    		public void handle(MouseEvent e){
+    			simulation.save();
     		}
     	});
     }
