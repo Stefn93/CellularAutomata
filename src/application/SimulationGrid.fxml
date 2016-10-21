@@ -70,7 +70,7 @@
                               <Insets left="2.0" right="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="SaveButton" mnemonicParsing="false" text="SAVE DATA" textAlignment="CENTER">
+                        <Button fx:id="saveButton" mnemonicParsing="false" text="SAVE DATA" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="17.0" />
                            </font>
