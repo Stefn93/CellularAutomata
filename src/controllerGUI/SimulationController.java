@@ -2,6 +2,7 @@ package controllerGUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import framework.simulation.SimulationThread;
 import framework.universe.cell.Pattern;
 import gameoflife.GOLCellType;
@@ -20,105 +21,107 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-public class SimulationController implements Initializable{
-	
-    @FXML 
-    private Button restart;
-    @FXML 
-    private Button start;
-    @FXML
-    private Slider delay;
-    @FXML
-    private Label generationLabel;
-    @FXML
-    private ChoiceBox<? extends Pattern> patternChoice; 
-    @FXML
-    private TextField infoTextField;
-    @FXML
-    private VBox graphVBox;
-    @FXML
-    private Button saveButton;
+public class SimulationController implements Initializable {
 
+	@FXML
+	private Button restart;
+	@FXML
+	private Button start;
+	@FXML
+	private Slider delay;
+	@FXML
+	private Label generationLabel;
+	@FXML
+	private ChoiceBox<? extends Pattern> patternChoice;
+	@FXML
+	private TextField infoTextField;
+	@FXML
+	private VBox graphVBox;
+	@FXML
+	private Button saveButton;
 
 	private SimulationThread<GOLCellType> simulation;
-	
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void setSimulation(SimulationThread<GOLCellType> simulation){
+	public void setSimulation(SimulationThread<GOLCellType> simulation) {
 		this.simulation = simulation;
 		this.simulation.setGuiController(this);
 		ObservableList list = FXCollections.observableArrayList(simulation.getPatterns());
-		patternChoice.setItems(list);	
-		if(patternChoice.getItems().size() > 0){
-    		patternChoice.getSelectionModel().selectFirst();
-    		simulation.getGui().setMouseListener(patternChoice.getSelectionModel().getSelectedItem());
-    	}
+		patternChoice.setItems(list);
+		if (patternChoice.getItems().size() > 0) {
+			patternChoice.getSelectionModel().selectFirst();
+			simulation.getGui().setMouseListener(patternChoice.getSelectionModel().getSelectedItem());
+		}
 		this.simulation.start();
 	}
 
-    @Override // This method is called by the FXMLLoader when initialization is complete
-    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-    	delayListener();
-    	startListener();
-    	restartListener();
-    	choiceListener();
-    }
-    
-    private void restartListener(){
-    	restart.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
-    		@Override
-    		public void handle(MouseEvent e){
-    			simulation.reset();
-    		}
-    	});
-    }
-    
-    private void startListener(){
-    	start.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
-    		@Override
-    		public void handle(MouseEvent e){
-    			simulation.switchPause();
-    			saveButton.setDisable(saveButton.isDisabled());
-    		}
-    	});
-    }
-    
-    private void delayListener(){
-	    delay.valueProperty().addListener(new ChangeListener<Number>() {
-	    	public void changed(ObservableValue<? extends Number> ov,
-	    			Number old_val, Number new_val) {
-	    		simulation.setDelay(new_val.intValue());
-	    	}
-	    });
-    }
+	@Override // This method is called by the FXMLLoader when initialization is
+				// complete
+	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+		saveButton.setDisable(true);
+		delayListener();
+		startListener();
+		restartListener();
+		choiceListener();
+		saveListener();
+	}
 
-    private void choiceListener() {
-    	patternChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Pattern>() {
-    		@Override
-    		public void changed(ObservableValue<? extends Pattern> ol, Pattern oldVal, Pattern newVal) {
-    			simulation.getGui().setMouseListener(patternChoice.getSelectionModel().getSelectedItem());    			
-    		}
-    	});
-    }
-    
-    private void saveListener() {
-    	saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
-    		@Override
-    		public void handle(MouseEvent e){
-    			simulation.save();
-    		}
-    	});
-    }
+	private void restartListener() {
+		restart.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				simulation.reset();
+			}
+		});
+	}
+
+	private void startListener() {
+		start.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				simulation.switchPause();
+				saveButton.setDisable(!saveButton.isDisabled());
+			}
+		});
+	}
+
+	private void delayListener() {
+		delay.valueProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+				simulation.setDelay(new_val.intValue());
+			}
+		});
+	}
+
+	private void choiceListener() {
+		patternChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Pattern>() {
+			@Override
+			public void changed(ObservableValue<? extends Pattern> ol, Pattern oldVal, Pattern newVal) {
+				simulation.getGui().setMouseListener(patternChoice.getSelectionModel().getSelectedItem());
+			}
+		});
+	}
+
+	private void saveListener() {
+		saveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				simulation.save();
+			}
+		});
+	}
 
 	public Label getGenerationLabel() {
 		return generationLabel;
 	}
-	
-	public void setSimulationInfo(String s){
+
+	public void setSimulationInfo(String s) {
 		infoTextField.setText(s + "\n");
 	}
-    
+
 	public VBox getGraphVBox() {
 		return graphVBox;
 	}
-	
+
 }

@@ -33,8 +33,8 @@ public class GOLBuilder {
         xAxis.setAutoRanging(true);
         xAxis.setLabel("Generation");
         yAxis.setLabel("Population");
-        xAxis.setAnimated(true);
-        yAxis.setAnimated(true);
+        xAxis.setAnimated(false);
+        yAxis.setAnimated(false);
         
         //creating the chart
         final PopulationChart<GOLCellType> chart = new PopulationChart(xAxis, yAxis, new GOLStateList());

@@ -10,6 +10,7 @@ import cellularTransport.patterns.Oxygen;
 import framework.gui.GridGui;
 import framework.gui.WorldGui;
 import framework.simulation.PopulationChart;
+import framework.simulation.SimulationChart;
 import framework.universe2d.GridPattern;
 import javafx.scene.chart.NumberAxis;
 
@@ -23,25 +24,24 @@ public class CTBuilder {
 		list.add(new Oxygen());
 
 		GridGui<CTCellType> gui = new GridGui<CTCellType>(70, new CTWorld(70, 70, new CellularTransportRule()), list);
-        gui.setMouseListener(new Cl());
-		
+		gui.setMouseListener(new Cl());
+
 		return gui;
 	}
 
-	public static PopulationChart<CTCellType> buildPopulationChart() {
-        final NumberAxis xAxis = new NumberAxis();
-        final NumberAxis yAxis = new NumberAxis();
-        xAxis.setAutoRanging(true);
-        xAxis.setLabel("Generation");
-        yAxis.setLabel("Population");
-        xAxis.setAnimated(true);
-        yAxis.setAnimated(true);
-        //creating the chart
+	public static SimulationChart buildPopulationChart() {
+		final NumberAxis xAxis = new NumberAxis();
+		final NumberAxis yAxis = new NumberAxis();
+		xAxis.setAutoRanging(true);
+		xAxis.setLabel("Generation");
+		yAxis.setLabel("Population");
+		xAxis.setAnimated(false);
+		yAxis.setAnimated(false);
+		// creating the chart
 
-        final PopulationChart<CTCellType> chart = new PopulationChart(xAxis, yAxis, new CTStateList());
-        
+		final PopulationChart<CTCellType> chart = new PopulationChart(xAxis, yAxis, new CTStateList());
+
 		return chart;
 	}
 
 }
-

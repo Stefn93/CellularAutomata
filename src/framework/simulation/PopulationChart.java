@@ -1,72 +1,61 @@
 package framework.simulation;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 import framework.universe.cell.CellType;
 import framework.universe.cell.StateList;
 import javafx.scene.Node;
 import javafx.scene.chart.Axis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 
-import java.util.*;
+public class PopulationChart<T extends CellType> extends SimulationChart<T> {
 
-public class PopulationChart<T extends CellType> extends LineChart<Integer, Integer>{
-
-	private StateList<T> states;
-	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PopulationChart(Axis xAxis, Axis yAxis, StateList<T> states) {
-		super(xAxis, yAxis);
-		this.states = states;
-		for (CellType state:states) {
+		super(xAxis, yAxis, states);
+		for (CellType state : states) {
 			if (!state.getValueName().equals(StateList.DEAD)) {
-		        XYChart.Series series = new XYChart.Series();
-		        String colorString = state.getColor().toString().replace("0x", "");
-		        series.setName(state.getValueName());
-		        getData().add(series);
-		        series.getNode().getStyleClass().add(series.getName().replace(" ", "-"));
-		        Set<Node> lineNode = this.lookupAll("."+series.getName().replace(" ", "-"));  
-		        for (final Node line : lineNode) {  
-		        	line.setStyle("-fx-stroke: #"+colorString+"; "
-		        			+ "-fx-stroke-width: 2px;");  
-		        }  
-		        Set<Node> set = this.lookupAll("Label.chart-legend-item");
-		        for (Node n:set) {
-			        	Label l = (Label) n;
-			        	if (l.getText().equals(series.getName())) {
-			        		final Rectangle rectangle = new Rectangle(5, 5, state.getColor());
-			        		//System.out.println(state.getColor());
-			        		l.setGraphic(rectangle);
-			        	}
-		        }
+				XYChart.Series series = new XYChart.Series();
+				String colorString = state.getColor().toString().replace("0x", "");
+				series.setName(state.getValueName());
+				getData().add(series);
+				series.getNode().getStyleClass().add(series.getName().replace(" ", "_"));
+				Set<Node> lineNode = this.lookupAll("." + series.getName().replace(" ", "_"));
+				for (final Node line : lineNode) {
+					line.setStyle("-fx-stroke: #" + colorString + "; " + "-fx-stroke-width: 1.5px;");
+				}
+
+			}
+		}
+		for (CellType state : states) {
+			Set<Node> set = this.lookupAll("Label.chart-legend-item.");
+			for (Node n : set) {
+				Label l = (Label) n;
+				if (l.getText().equals(state.getValueName())) {
+					final Circle rectangle = new Circle(10, state.getColor());
+					l.setGraphic(rectangle);
+				}
 			}
 		}
 	}
-	
 
+	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void updateInfo(int generation, Map<T, Integer> worldStatus) {
-        //defining a series
-        //populating the series with data
+	public void updateInfo(int generation, Object o) {
+		Map<T, Integer> worldStatus = (Map<T, Integer>) o;
+		Iterator<XYChart.Series<Integer, Integer>> it = this.getDisplayedSeriesIterator();
+		while (it.hasNext()) {
+			Series actual = it.next();
+			for (CellType value : states) {
+				if (actual.getName().equals(value.getValueName()))
+					actual.getData().add(new XYChart.Data(generation, worldStatus.get(value)));
+			}
+		}
 
-		Iterator<javafx.scene.chart.XYChart.Series<Integer, Integer>> it = this.getDisplayedSeriesIterator();
-        while (it.hasNext()) {
-        	Series actual = it.next();
-        	for (CellType value:states) {
-        		if(actual.getName().equals(value.getValueName()))
-        			actual.getData().add(new XYChart.Data(generation, worldStatus.get(value)));
-        	}
-        }
-        
 	}
 
-	@SuppressWarnings("unchecked")
-	public void reset() {
-		Iterator<javafx.scene.chart.XYChart.Series<Integer, Integer>> it = this.getDisplayedSeriesIterator();
-        while (it.hasNext()) {
-        	it.next().getData().clear();
-        }
-	}
 }
