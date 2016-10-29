@@ -8,6 +8,7 @@ import framework.gui.WorldGui;
 import framework.simulation.EvolutionRateChart;
 import framework.simulation.SimulationChart;
 import framework.simulation.SimulationThread;
+import gameoflife.GOLBuilder;
 import gameoflife.GOLCellType;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -84,9 +85,8 @@ public class Main extends Application {
 	public static void main(String[] args) throws Exception {
 
 		// GAME OF LIFE
-		// Main.setSimulation(GOLBuilder.build());
-		// Main.setGraph(GOLBuilder.buildPopulationChart(), new
-		// EvolutionRateChart(new NumberAxis(), new NumberAxis()));
+		//Main.setSimulation(GOLBuilder.build());
+		//Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
 
 		// CELLULAR MEMBRANE
 		Main.setSimulation(CTBuilder.build());
