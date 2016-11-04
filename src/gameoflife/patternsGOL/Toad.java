@@ -1,8 +1,10 @@
-package gameoflife;
+package gameoflife.patternsGOL;
 
 import framework.universe2d.GridPattern;
+import gameoflife.GOLCellType;
+import gameoflife.GOLStateList;
 
-public class ToadPattern extends GridPattern<GOLCellType> {
+public class Toad extends GridPattern<GOLCellType> {
     @Override
     public GOLCellType[][] get() {
     	list = new GOLStateList();

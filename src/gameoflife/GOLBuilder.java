@@ -7,22 +7,37 @@ import framework.gui.GridGui;
 import framework.gui.WorldGui;
 import framework.simulation.PopulationChart;
 import framework.universe2d.GridPattern;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.chart.LineChart;
+import gameoflife.patternsGOL.Beacon;
+import gameoflife.patternsGOL.Beehive;
+import gameoflife.patternsGOL.Blinker;
+import gameoflife.patternsGOL.Block;
+import gameoflife.patternsGOL.Boat;
+import gameoflife.patternsGOL.GosperGliderGun;
+import gameoflife.patternsGOL.Loaf;
+import gameoflife.patternsGOL.Pulsar;
+import gameoflife.patternsGOL.Single;
+import gameoflife.patternsGOL.Toad;
+import gameoflife.patternsGOL.Glider;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
 
 public class GOLBuilder {
 
 	public static WorldGui<GOLCellType> build() {
 		List<GridPattern<GOLCellType>> list = new ArrayList<GridPattern<GOLCellType>>();
-		list.add(new ToadPattern());
-		list.add(new SingleCellPattern());
+		list.add(new Single());
+		list.add(new Beacon());
+		list.add(new Beehive());
+		list.add(new Block());
+		list.add(new Loaf());
+		list.add(new Boat());
+		list.add(new Toad());
+		list.add(new Pulsar());
+		list.add(new Blinker());
+		list.add(new GosperGliderGun());
+		list.add(new Glider());
 
 		GridGui<GOLCellType> gui = new GridGui<GOLCellType>(70, new GOLWorld(70, 70, new ConwaysGameOfLifeRule()), list);
-        gui.setMouseListener(new SingleCellPattern());
+        gui.setMouseListener(new Single());
 		
 		return gui;
 	}

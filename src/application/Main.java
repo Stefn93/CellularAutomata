@@ -85,12 +85,12 @@ public class Main extends Application {
 	public static void main(String[] args) throws Exception {
 
 		// GAME OF LIFE
-		//Main.setSimulation(GOLBuilder.build());
-		//Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
+		Main.setSimulation(GOLBuilder.build());
+		Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
 
 		// CELLULAR MEMBRANE
-		Main.setSimulation(CTBuilder.build());
-		Main.setGraph(CTBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
+		//Main.setSimulation(CTBuilder.build());
+		//Main.setGraph(CTBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
 
 		Main.launch(args);
 	}

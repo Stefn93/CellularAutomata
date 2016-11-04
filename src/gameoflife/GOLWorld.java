@@ -5,14 +5,10 @@ import java.util.Map;
 
 import framework.simulation.Behaviour;
 import framework.universe.cell.Cell;
-import framework.universe.cell.CellType;
-import framework.universe.cell.Coordinates;
-import framework.universe.cell.Pattern;
 import framework.universe.cell.SimpleCell;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.World2D;
-import javafx.collections.ObservableList;
-import javafx.scene.chart.PieChart.Data;
+import gameoflife.patternsGOL.GosperGliderGun;
 
 public class GOLWorld extends World2D<GOLCellType> {
     public GOLWorld(int height, int length, Behaviour<GOLCellType> rule) {
@@ -26,7 +22,7 @@ public class GOLWorld extends World2D<GOLCellType> {
 
 	@Override
 	public void defaultState() {
-        addPattern(new ToadPattern(), new Coordinates2D(30, 30));		
+        addPattern(new GosperGliderGun(), new Coordinates2D(10, 10));		
 	}
 
 	@Override
