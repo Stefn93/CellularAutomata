@@ -9,14 +9,13 @@ import cellularTransport.patterns.Glucose;
 import cellularTransport.patterns.Oxygen;
 import framework.gui.GridGui;
 import framework.gui.WorldGui;
-import framework.simulation.PopulationChart;
-import framework.simulation.SimulationChart;
+import framework.simulation.CellularAutomataBuilder;
 import framework.universe2d.GridPattern;
-import javafx.scene.chart.NumberAxis;
 
-public class CTBuilder {
+public class CTBuilder extends CellularAutomataBuilder<CTCellType> {
 
-	public static WorldGui<CTCellType> build() {
+	@Override
+	public WorldGui<CTCellType> build() {
 		List<GridPattern<CTCellType>> list = new ArrayList<GridPattern<CTCellType>>();
 		list.add(new AllMolecules());
 		list.add(new Cl());
@@ -27,21 +26,6 @@ public class CTBuilder {
 		gui.setMouseListener(new Cl());
 
 		return gui;
-	}
-
-	public static SimulationChart buildPopulationChart() {
-		final NumberAxis xAxis = new NumberAxis();
-		final NumberAxis yAxis = new NumberAxis();
-		xAxis.setAutoRanging(true);
-		xAxis.setLabel("Generation");
-		yAxis.setLabel("Population");
-		xAxis.setAnimated(false);
-		yAxis.setAnimated(false);
-		// creating the chart
-
-		final PopulationChart<CTCellType> chart = new PopulationChart(xAxis, yAxis, new CTStateList());
-
-		return chart;
 	}
 
 }

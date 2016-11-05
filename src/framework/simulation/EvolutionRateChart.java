@@ -4,13 +4,13 @@ import java.util.Set;
 
 import framework.universe.cell.CellType;
 import javafx.scene.Node;
-import javafx.scene.chart.Axis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 public class EvolutionRateChart<T extends CellType> extends SimulationChart<T> {
 
-	public EvolutionRateChart(Axis xAxis, Axis yAxis) {
-		super(xAxis, yAxis, null);
+	public EvolutionRateChart() {
+		super(new NumberAxis(), new NumberAxis(), null);
 		this.getXAxis().setLabel("Generation");
 		this.getYAxis().setLabel("Evolution Rate");
 		Series<Integer, Integer> rate = new Series<Integer, Integer>();

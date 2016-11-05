@@ -2,13 +2,12 @@ package application;
 
 import java.io.IOException;
 
-import cellularTransport.CTBuilder;
 import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
-import framework.simulation.EvolutionRateChart;
+import framework.simulation.CellularAutomataBuilder;
 import framework.simulation.SimulationChart;
 import framework.simulation.SimulationThread;
-import gameoflife.GOLBuilder;
+import framework.universe.cell.StateList;
 import gameoflife.GOLCellType;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,12 +16,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class Main extends Application {
+public class SimulationApplication extends Application {
 
 	private GridPane root;
 	private SimulationController controller;
@@ -35,7 +33,7 @@ public class Main extends Application {
 		try {
 			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("SimulationGrid.fxml"));
+			loader.setLocation(SimulationApplication.class.getResource("SimulationGrid.fxml"));
 			root = (GridPane) loader.load();
 			root.add(gui.getNode(), 0, 0);
 			GridPane.setMargin(gui.getNode(), new Insets(40, 0, 0, 40));
@@ -78,21 +76,9 @@ public class Main extends Application {
 		});
 	}
 
-	public static void setSimulation(WorldGui gui) {
-		Main.gui = gui;
-	}
-
-	public static void main(String[] args) throws Exception {
-
-		// GAME OF LIFE
-		Main.setSimulation(GOLBuilder.build());
-		Main.setGraph(GOLBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
-
-		// CELLULAR MEMBRANE
-		//Main.setSimulation(CTBuilder.build());
-		//Main.setGraph(CTBuilder.buildPopulationChart(), new EvolutionRateChart(new NumberAxis(), new NumberAxis()));
-
-		Main.launch(args);
+	public static void setSimulation(CellularAutomataBuilder sim, StateList list) {
+		SimulationApplication.gui = sim.build();
+		setGraph(sim.buildPopulationChart(list), sim.buildEvolutionRateChart());
 	}
 
 	private static void setGraph(SimulationChart buildPieChart, SimulationChart evolutionRateChart2) {

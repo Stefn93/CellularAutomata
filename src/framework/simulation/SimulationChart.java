@@ -22,7 +22,7 @@ public abstract class SimulationChart<T extends CellType> extends LineChart<Inte
 
 	protected StateList<T> states;
 
-	public SimulationChart(Axis<Integer> xAxis, Axis<Integer> yAxis, StateList<T> states) {
+	public SimulationChart(Axis xAxis, Axis yAxis, StateList<T> states) {
 		super(xAxis, yAxis);
 		this.states = states;
 		xAxis.setAnimated(false);
