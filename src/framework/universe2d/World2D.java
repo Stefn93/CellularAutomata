@@ -1,13 +1,13 @@
 package framework.universe2d;
 
 import framework.simulation.Behaviour;
-import framework.universe.cell.Cell;
-import framework.universe.cell.CellType;
-import framework.universe.cell.Coordinates;
-import framework.universe.cell.Pattern;
-import framework.universe.cell.SimpleCell;
-import framework.universe.cell.StateList;
 import framework.universe.world.SimpleWorld;
+import framework.universe.world.cell.Cell;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Coordinates;
+import framework.universe.world.cell.Pattern;
+import framework.universe.world.cell.SimpleCell;
+import framework.universe.world.cell.StateList;
 import gameoflife.GOLCellType;
 
 public abstract class World2D<x extends CellType> extends SimpleWorld<x> {

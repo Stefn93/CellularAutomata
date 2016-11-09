@@ -2,12 +2,12 @@ package application;
 
 import java.io.IOException;
 
-import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
+import framework.gui.controller.SimulationController;
 import framework.simulation.CellularAutomataBuilder;
 import framework.simulation.SimulationChart;
 import framework.simulation.SimulationThread;
-import framework.universe.cell.StateList;
+import framework.universe.world.cell.StateList;
 import gameoflife.GOLCellType;
 import javafx.application.Application;
 import javafx.application.Platform;

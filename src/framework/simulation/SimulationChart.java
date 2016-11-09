@@ -9,8 +9,8 @@ import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 
-import framework.universe.cell.CellType;
-import framework.universe.cell.StateList;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.StateList;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.SnapshotParameters;

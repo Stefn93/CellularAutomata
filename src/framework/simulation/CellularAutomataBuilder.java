@@ -1,8 +1,8 @@
 package framework.simulation;
 
 import framework.gui.WorldGui;
-import framework.universe.cell.CellType;
-import framework.universe.cell.StateList;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.StateList;
 import javafx.scene.chart.NumberAxis;
 
 public abstract class CellularAutomataBuilder<T extends CellType> {

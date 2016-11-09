@@ -1,9 +1,9 @@
 package framework.universe.world;
 
 import framework.simulation.Behaviour;
-import framework.universe.cell.CellType;
-import framework.universe.cell.Coordinates;
-import framework.universe.cell.StateList;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Coordinates;
+import framework.universe.world.cell.StateList;
 
 public abstract class SimpleWorld<T extends CellType> implements World<T>{
 	protected Behaviour<T> behaviour;

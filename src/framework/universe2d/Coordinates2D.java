@@ -1,6 +1,6 @@
 package framework.universe2d;
 
-import framework.universe.cell.Coordinates;
+import framework.universe.world.cell.Coordinates;
 
 public class Coordinates2D implements Coordinates{
 

@@ -9,8 +9,8 @@ import cellularTransport.patterns.GlucoseATPCarrier;
 import cellularTransport.patterns.GlucoseCarrier;
 import cellularTransport.patterns.Membrane;
 import framework.simulation.Behaviour;
-import framework.universe.cell.Cell;
-import framework.universe.cell.SimpleCell;
+import framework.universe.world.cell.Cell;
+import framework.universe.world.cell.SimpleCell;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.World2D;
 

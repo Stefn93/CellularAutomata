@@ -2,9 +2,9 @@ package framework.gui;
 
 import java.util.List;
 
-import framework.universe.cell.CellType;
-import framework.universe.cell.Pattern;
 import framework.universe.world.World;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Pattern;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 

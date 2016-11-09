@@ -1,10 +1,10 @@
-package controllerGUI;
+package framework.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import framework.simulation.SimulationThread;
-import framework.universe.cell.Pattern;
+import framework.universe.world.cell.Pattern;
 import gameoflife.GOLCellType;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

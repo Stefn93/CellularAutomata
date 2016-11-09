@@ -2,7 +2,7 @@ package framework.simulation;
 
 import java.util.Set;
 
-import framework.universe.cell.CellType;
+import framework.universe.world.cell.CellType;
 import javafx.scene.Node;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;

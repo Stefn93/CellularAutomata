@@ -1,9 +1,9 @@
 package framework.simulation;
 
-import framework.universe.cell.Cell;
-import framework.universe.cell.CellType;
-import framework.universe.cell.Coordinates;
 import framework.universe.world.World;
+import framework.universe.world.cell.Cell;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Coordinates;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.World2D;
 

@@ -1,7 +1,7 @@
 package gameoflife;
 
-import framework.universe.cell.CellType;
-import framework.universe.cell.StateList;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.StateList;
 import javafx.scene.paint.Color;
 
 @SuppressWarnings("serial")

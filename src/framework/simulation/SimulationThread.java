@@ -3,11 +3,11 @@ package framework.simulation;
 import java.io.IOException;
 import java.util.List;
 
-import controllerGUI.SimulationController;
 import framework.gui.WorldGui;
-import framework.universe.cell.CellType;
-import framework.universe.cell.Pattern;
+import framework.gui.controller.SimulationController;
 import framework.universe.world.World;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Pattern;
 import javafx.application.Platform;
 
 /**

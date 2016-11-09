@@ -1,6 +1,6 @@
 package cellularTransport;
 
-import framework.universe.cell.CellType;
+import framework.universe.world.cell.CellType;
 import javafx.scene.paint.Color;
 
 public class CTCellType extends CellType{

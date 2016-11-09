@@ -1,6 +1,6 @@
 package cellularTransport;
 
-import framework.universe.cell.StateList;
+import framework.universe.world.cell.StateList;
 import javafx.scene.paint.Color;
 
 @SuppressWarnings("serial")

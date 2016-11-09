@@ -2,10 +2,10 @@ package framework.universe.world;
 
 import java.util.Map;
 
-import framework.universe.cell.Cell;
-import framework.universe.cell.CellType;
-import framework.universe.cell.Coordinates;
-import framework.universe.cell.Pattern;
+import framework.universe.world.cell.Cell;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Coordinates;
+import framework.universe.world.cell.Pattern;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart.Data;
 

@@ -1,8 +1,8 @@
 package framework.universe2d;
 
-import framework.universe.cell.CellType;
-import framework.universe.cell.Pattern;
-import framework.universe.cell.StateList;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Pattern;
+import framework.universe.world.cell.StateList;
 
 public abstract class GridPattern<T extends CellType> implements Pattern {
     public abstract T[][] get();

@@ -1,4 +1,4 @@
-package framework.universe.cell;
+package framework.universe.world.cell;
 
 import gameoflife.GOLCellType;
 

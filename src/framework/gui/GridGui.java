@@ -2,10 +2,10 @@ package framework.gui;
 
 import java.util.List;
 
-import framework.universe.cell.Cell;
-import framework.universe.cell.CellType;
-import framework.universe.cell.Coordinates;
-import framework.universe.cell.Pattern;
+import framework.universe.world.cell.Cell;
+import framework.universe.world.cell.CellType;
+import framework.universe.world.cell.Coordinates;
+import framework.universe.world.cell.Pattern;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.GridPattern;
 import framework.universe2d.World2D;

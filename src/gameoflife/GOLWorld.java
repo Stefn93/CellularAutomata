@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import framework.simulation.Behaviour;
-import framework.universe.cell.Cell;
-import framework.universe.cell.SimpleCell;
+import framework.universe.world.cell.Cell;
+import framework.universe.world.cell.SimpleCell;
 import framework.universe2d.Coordinates2D;
 import framework.universe2d.World2D;
 import gameoflife.patternsGOL.GosperGliderGun;
