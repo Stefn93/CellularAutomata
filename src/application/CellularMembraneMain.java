@@ -2,6 +2,7 @@ package application;
 
 import cellularTransport.CTBuilder;
 import cellularTransport.CTStateList;
+import fcast.application.SimulationApplication;
 
 public class CellularMembraneMain extends SimulationApplication {
 	

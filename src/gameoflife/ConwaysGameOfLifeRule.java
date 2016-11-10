@@ -1,11 +1,11 @@
 package gameoflife;
 
-import framework.simulation.GeneralBehaviour;
-import framework.universe.world.World;
-import framework.universe.world.cell.Coordinates;
-import framework.universe.world.cell.SimpleCell;
-import framework.universe2d.Coordinates2D;
-import framework.universe2d.World2D;
+import fcast.simulation.GeneralBehaviour;
+import fcast.universe.world.World;
+import fcast.universe.world.cell.Coordinates;
+import fcast.universe.world.cell.SimpleCell;
+import fcast.universe2d.Coordinates2D;
+import fcast.universe2d.World2D;
 
 public class ConwaysGameOfLifeRule extends GeneralBehaviour<GOLCellType> {
 	

@@ -3,10 +3,10 @@ package gameoflife;
 import java.util.ArrayList;
 import java.util.List;
 
-import framework.gui.GridGui;
-import framework.gui.WorldGui;
-import framework.simulation.CellularAutomataBuilder;
-import framework.universe2d.GridPattern;
+import fcast.gui.GridGui;
+import fcast.gui.WorldGui;
+import fcast.simulation.CellularAutomataBuilder;
+import fcast.universe2d.GridPattern;
 import gameoflife.patternsGOL.Beacon;
 import gameoflife.patternsGOL.Beehive;
 import gameoflife.patternsGOL.Blinker;

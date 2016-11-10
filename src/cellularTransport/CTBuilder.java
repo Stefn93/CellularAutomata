@@ -7,10 +7,10 @@ import cellularTransport.patterns.AllMolecules;
 import cellularTransport.patterns.Cl;
 import cellularTransport.patterns.Glucose;
 import cellularTransport.patterns.Oxygen;
-import framework.gui.GridGui;
-import framework.gui.WorldGui;
-import framework.simulation.CellularAutomataBuilder;
-import framework.universe2d.GridPattern;
+import fcast.gui.GridGui;
+import fcast.gui.WorldGui;
+import fcast.simulation.CellularAutomataBuilder;
+import fcast.universe2d.GridPattern;
 
 public class CTBuilder extends CellularAutomataBuilder<CTCellType> {
 

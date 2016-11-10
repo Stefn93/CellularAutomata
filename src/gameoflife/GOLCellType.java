@@ -1,6 +1,6 @@
 package gameoflife;
 
-import framework.universe.world.cell.CellType;
+import fcast.universe.world.cell.CellType;
 import javafx.scene.paint.Color;
 
 public class GOLCellType extends CellType{

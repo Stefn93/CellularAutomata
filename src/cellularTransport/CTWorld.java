@@ -8,11 +8,11 @@ import cellularTransport.patterns.ClCarrier;
 import cellularTransport.patterns.GlucoseATPCarrier;
 import cellularTransport.patterns.GlucoseCarrier;
 import cellularTransport.patterns.Membrane;
-import framework.simulation.Behaviour;
-import framework.universe.world.cell.Cell;
-import framework.universe.world.cell.SimpleCell;
-import framework.universe2d.Coordinates2D;
-import framework.universe2d.World2D;
+import fcast.simulation.Behaviour;
+import fcast.universe.world.cell.Cell;
+import fcast.universe.world.cell.SimpleCell;
+import fcast.universe2d.Coordinates2D;
+import fcast.universe2d.World2D;
 
 public class CTWorld extends World2D<CTCellType> {
 	

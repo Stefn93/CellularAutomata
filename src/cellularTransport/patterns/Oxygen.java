@@ -2,7 +2,7 @@ package cellularTransport.patterns;
 
 import cellularTransport.CTCellType;
 import cellularTransport.CTStateList;
-import framework.universe2d.GridPattern;
+import fcast.universe2d.GridPattern;
 
 public class Oxygen extends GridPattern<CTCellType> {
 

@@ -1,5 +1,6 @@
 package application;
 
+import fcast.application.SimulationApplication;
 import gameoflife.GOLBuilder;
 import gameoflife.GOLStateList;
 
