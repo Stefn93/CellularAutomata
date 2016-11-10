@@ -22,7 +22,7 @@ public class GOLWorld extends World2D<GOLCellType> {
 
 	@Override
 	public void defaultState() {
-        addPattern(new GosperGliderGun(), new Coordinates2D(10, 10));		
+		
 	}
 
 	@Override

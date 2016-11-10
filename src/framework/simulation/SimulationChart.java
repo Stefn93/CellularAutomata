@@ -50,10 +50,10 @@ public abstract class SimulationChart<T extends CellType> extends LineChart<Inte
 				if (y < min)
 					min = y;
 				gen = d.getXValue();
-				printout.println("\tGeneration " + gen + " \t Population: " + y);
+				printout.println("\t<generation>" + gen + "<.generation>" + " \t <population>" + y + "<.population>");
 			}
 			avg = sum / gen;
-			printout.println("\tMAX: " + max + "\tMIN: " + min + "\tAVERAGE: " + avg);
+			printout.println("\t<max>" + max + "<.max>" + "\t<min>" + min + "<.min>" + "\t<avg>" + avg + "<.avg>");
 
 		}
 		printout.close();
