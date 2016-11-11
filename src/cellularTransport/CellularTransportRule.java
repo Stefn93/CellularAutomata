@@ -2,11 +2,11 @@ package cellularTransport;
 
 import fcast.simulation.GeneralBehaviour;
 import fcast.universe.world.World;
+import fcast.universe.world.bidimensional.Coordinates2D;
+import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Cell;
 import fcast.universe.world.cell.Coordinates;
 import fcast.universe.world.cell.SimpleCell;
-import fcast.universe2d.Coordinates2D;
-import fcast.universe2d.World2D;
 
 public class CellularTransportRule extends GeneralBehaviour<CTCellType> {
      

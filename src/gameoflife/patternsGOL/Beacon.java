@@ -1,6 +1,6 @@
 package gameoflife.patternsGOL;
 
-import fcast.universe2d.GridPattern;
+import fcast.universe.world.bidimensional.GridPattern;
 import gameoflife.GOLCellType;
 import gameoflife.GOLStateList;
 

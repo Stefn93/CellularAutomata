@@ -1,4 +1,4 @@
-package fcast.universe2d;
+package fcast.universe.world.bidimensional;
 
 import fcast.simulation.Behaviour;
 import fcast.universe.world.SimpleWorld;

@@ -2,13 +2,13 @@ package fcast.gui;
 
 import java.util.List;
 
+import fcast.universe.world.bidimensional.Coordinates2D;
+import fcast.universe.world.bidimensional.GridPattern;
+import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Cell;
 import fcast.universe.world.cell.CellType;
 import fcast.universe.world.cell.Coordinates;
 import fcast.universe.world.cell.Pattern;
-import fcast.universe2d.Coordinates2D;
-import fcast.universe2d.GridPattern;
-import fcast.universe2d.World2D;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
