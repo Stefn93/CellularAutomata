@@ -14,24 +14,25 @@ public class SampleWorld extends World2D<SampleCellType> {
 
 	@Override
 	public Map<SampleCellType, Integer> getPopulationStatus() {
-		//Create a map association between an integer value and a cell of the grid, in order to populate the graphs.
+		// Create a map association between an integer value and a cell of the
+		// grid, in order to populate the graphs.
 		return null;
 	}
 
 	@Override
 	protected Cell<SampleCellType> createNewCell() {
-		//This method may be used to return a particular type of cell.
+		// This method may be used to return a particular type of cell.
 		return null;
 	}
 
 	@Override
 	protected void clear() {
-		//Standard method used to reset the simulation.
+		// Standard method used to reset the simulation.
 	}
 
 	@Override
 	protected void defaultState() {
-		//Standard method used to set the initial state of the simulation.
+		// Standard method used to set the initial state of the simulation.
 	}
 
 }
