@@ -1,13 +1,13 @@
 package gameoflife;
 
-import fcast.simulation.GeneralBehaviour;
 import fcast.universe.world.World;
 import fcast.universe.world.bidimensional.Coordinates2D;
+import fcast.universe.world.bidimensional.MooreNeighborhood;
 import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Coordinates;
 import fcast.universe.world.cell.SimpleCell;
 
-public class ConwaysGameOfLifeRule extends GeneralBehaviour<GOLCellType> {
+public class ConwaysGameOfLifeRule extends MooreNeighborhood<GOLCellType> {
 	
 	private static GOLStateList list = new GOLStateList();
 	

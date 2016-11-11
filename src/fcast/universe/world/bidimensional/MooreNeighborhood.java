@@ -1,17 +1,16 @@
-package fcast.simulation;
+package fcast.universe.world.bidimensional;
 
+import fcast.simulation.Behaviour;
 import fcast.universe.world.World;
-import fcast.universe.world.bidimensional.Coordinates2D;
-import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Cell;
 import fcast.universe.world.cell.CellType;
 import fcast.universe.world.cell.Coordinates;
 
-public abstract class GeneralBehaviour<x extends CellType> implements Behaviour<x> {
+public abstract class MooreNeighborhood<x extends CellType> implements Behaviour<x> {
 	
 	protected Cell<x> EMPTY_CELL;
 	
-	protected GeneralBehaviour(Cell<x> cell){
+	protected MooreNeighborhood(Cell<x> cell){
 		EMPTY_CELL = cell;
 	}
 	

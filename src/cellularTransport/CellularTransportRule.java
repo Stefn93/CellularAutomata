@@ -1,14 +1,14 @@
 package cellularTransport;
 
-import fcast.simulation.GeneralBehaviour;
 import fcast.universe.world.World;
 import fcast.universe.world.bidimensional.Coordinates2D;
+import fcast.universe.world.bidimensional.MooreNeighborhood;
 import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Cell;
 import fcast.universe.world.cell.Coordinates;
 import fcast.universe.world.cell.SimpleCell;
 
-public class CellularTransportRule extends GeneralBehaviour<CTCellType> {
+public class CellularTransportRule extends MooreNeighborhood<CTCellType> {
      
 	protected CellularTransportRule() {
 		super(new SimpleCell<CTCellType>(stateList.get("Empty")));
