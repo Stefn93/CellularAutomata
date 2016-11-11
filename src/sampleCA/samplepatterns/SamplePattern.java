@@ -1,6 +1,6 @@
 package sampleCA.samplepatterns;
 
-import fcast.universe2d.GridPattern;
+import fcast.universe.world.bidimensional.GridPattern;
 import sampleCA.SampleCellType;
 import sampleCA.SampleStateList;
 

@@ -3,8 +3,8 @@ package sampleCA;
 import java.util.Map;
 
 import fcast.simulation.Behaviour;
+import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Cell;
-import fcast.universe2d.World2D;
 
 public class SampleWorld extends World2D<SampleCellType> {
 

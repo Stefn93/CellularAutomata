@@ -5,7 +5,7 @@ import java.util.List;
 import fcast.gui.GridGui;
 import fcast.gui.WorldGui;
 import fcast.simulation.CellularAutomataBuilder;
-import fcast.universe2d.GridPattern;
+import fcast.universe.world.bidimensional.GridPattern;
 import sampleCA.samplepatterns.SamplePattern;
 
 public class SampleBuilder extends CellularAutomataBuilder<SampleCellType> {
