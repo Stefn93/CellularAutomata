@@ -1,9 +1,6 @@
 package fcast.universe.world.cell;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-
-import gameoflife.GOLCellType;
 
 @SuppressWarnings("serial")
 public class StateList<T extends CellType> extends HashSet<T>{
