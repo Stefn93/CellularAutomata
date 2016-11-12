@@ -8,7 +8,7 @@ public class GlucoseCarrier extends GridPattern<CTCellType>{
 
 	@Override
 	public CTCellType[][] get() {
-		return new CTCellType[][] {{new CTStateList().get("Glucose Carrier")}, {new CTStateList().get("Glucose Carrier")}};
+		return new CTCellType[][] {{new CTStateList().get("GLUT")}, {new CTStateList().get("GLUT")}};
 	}
 
 }

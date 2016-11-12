@@ -8,6 +8,6 @@ public class ClATPCarrier extends GridPattern<CTCellType> {
 
 	@Override
 	public CTCellType[][] get() {
-		return new CTCellType[][] {{new CTStateList().get("Cl ATP Carrier")}, {new CTStateList().get("Cl ATP Carrier")}};
+		return new CTCellType[][] {{new CTStateList().get("Cl Uniporter")}, {new CTStateList().get("Cl Uniporter")}};
 	}
 }
