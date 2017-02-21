@@ -18,9 +18,7 @@ import javafx.application.Platform;
  * @param <x>
  */
 public class SimulationThread<x extends CellType> extends Thread {
-	/**
-	 * Mondo
-	 */
+
 	protected World<x> world;
 	protected SimulationController controller;
 	protected WorldGui<x> gui;
@@ -31,6 +29,16 @@ public class SimulationThread<x extends CellType> extends Thread {
 							// down.
 	private boolean paused;
 
+	/**
+	 * Costruttore del thread
+	 * 
+	 * @param gui
+	 *            mondo grafico su cui si svolge la simulazione
+	 * @param populationChart
+	 *            grafico della popolazione
+	 * @param chart
+	 *            grafico della frequenza di evoluzione
+	 */
 	public SimulationThread(WorldGui<x> gui, CellularAutomatonChart populationChart, CellularAutomatonChart chart) {
 		this.world = gui.getWorld();
 		this.gui = gui;
@@ -44,14 +52,19 @@ public class SimulationThread<x extends CellType> extends Thread {
 		world.nextState();
 	}
 
+	/**
+	 * Getter per la generazione
+	 * 
+	 * @return generazione corrente
+	 */
 	public int getGeneration() {
 		return generation;
 	}
 
 	@Override
 	public void run() {
-		while (true) {
-			try {
+		try {
+			while (true) {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
@@ -65,34 +78,55 @@ public class SimulationThread<x extends CellType> extends Thread {
 					}
 				});
 				SimulationThread.sleep(delay);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
 			}
+		} catch (InterruptedException e) {
 		}
 	}
 
+	/**
+	 * Setter per il delay
+	 * 
+	 * @param delay
+	 *            nuovo delay
+	 */
 	public void setDelay(int delay) {
 		this.delay = delay;
 	}
 
+	/**
+	 * Getter per il delay
+	 * 
+	 * @return delay corrente
+	 */
 	public int getDelay() {
 		return delay;
 	}
 
+	/**
+	 * Getter per il mondo logico su cui si svolge la simulazione
+	 * 
+	 * @return mondo su cui si svolge la simulazione
+	 */
 	public World<x> getWorld() {
 		return world;
 	}
 
+	/**
+	 * Effettua lo switch del valore di pausa
+	 */
 	public void switchPause() {
-		if (paused == true)
+		if (paused == true) {
 			paused = false;
-		else {
+		} else {
 			paused = true;
-
 		}
 	}
 
+	/**
+	 * Ripristina la simulazione
+	 */
 	public void reset() {
+		controller.disableSave();
 		paused = false;
 		generation = 0;
 		world.reset();
@@ -100,24 +134,39 @@ public class SimulationThread<x extends CellType> extends Thread {
 		evolutionChart.reset();
 	}
 
+	/**
+	 * Restituisce la lista dei pattern della simulazione
+	 */
 	public List<? extends Pattern> getPatterns() {
 		return gui.getPatternList();
 	}
 
+	/**
+	 * Getter per il mondo grafico della simulazione
+	 * 
+	 * @return mondo grafico su cui si svolge la simulazione
+	 */
 	public WorldGui<x> getGui() {
 		return gui;
 	}
 
+	/**
+	 * Setter per il controller dell'interfaccia grafica
+	 * 
+	 * @param controller
+	 */
 	public void setGuiController(SimulationController controller) {
 		this.controller = controller;
 	}
 
+	/**
+	 * Metodo per il salvataggio dei dati della simulazione sui file relativi.
+	 */
 	public void save() {
 		try {
 			evolutionChart.save("EvolutionChartData.dat", "EvolutionChart.png");
 			populationChart.save("PopulationChartData.dat", "PopulationChart.png");
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }

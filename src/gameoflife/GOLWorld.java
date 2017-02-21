@@ -3,7 +3,7 @@ package gameoflife;
 import java.util.HashMap;
 import java.util.Map;
 
-import fcast.simulation.Behaviour;
+import fcast.universe.world.Behaviour;
 import fcast.universe.world.bidimensional.Coordinates2D;
 import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Cell;

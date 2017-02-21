@@ -8,7 +8,7 @@ import cellularTransport.patterns.ClCarrier;
 import cellularTransport.patterns.GlucoseATPCarrier;
 import cellularTransport.patterns.GlucoseCarrier;
 import cellularTransport.patterns.Membrane;
-import fcast.simulation.Behaviour;
+import fcast.universe.world.Behaviour;
 import fcast.universe.world.bidimensional.Coordinates2D;
 import fcast.universe.world.bidimensional.World2D;
 import fcast.universe.world.cell.Cell;
