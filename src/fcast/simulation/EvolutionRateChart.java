@@ -7,12 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-/**
- * Grafico del tasso di evoluzione
- *
- * @param <T>
- *            tipo di cella presente nella simulazione
- */
 public class EvolutionRateChart<T extends CellType> extends SimulationChart<T> {
 
 	public EvolutionRateChart() {

@@ -12,10 +12,6 @@ import fcast.gui.WorldGui;
 import fcast.simulation.CellularAutomataBuilder;
 import fcast.universe.world.bidimensional.GridPattern;
 
-/**
- * 
- *
- */
 public class CTBuilder extends CellularAutomataBuilder<CTCellType> {
 
 	@Override

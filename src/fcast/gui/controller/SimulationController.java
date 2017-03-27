@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import fcast.simulation.SimulationThread;
-import fcast.universe.world.cell.CellType;
 import fcast.universe.world.cell.Pattern;
+import gameoflife.GOLCellType;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,63 +21,29 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-/**
- * Controller per l'interazione con l'utente
- * 
- * @param <T>
- *            tipo di cella presente nella simulazione
- *
- */
-public class SimulationController<T extends CellType> implements Initializable {
+public class SimulationController implements Initializable {
 
-	/**
-	 * Button per il restart
-	 */
 	@FXML
 	private Button restart;
-	/**
-	 * Button per lo start/pause
-	 */
 	@FXML
 	private Button start;
-	/**
-	 * Cursore per il delay
-	 */
 	@FXML
 	private Slider delay;
-	/**
-	 * Label per mostrare la generazione corrente
-	 */
 	@FXML
 	private Label generationLabel;
-	/**
-	 * Menu a tendina per la selezione del pattern da inserire con interazzione
-	 */
 	@FXML
 	private ChoiceBox<? extends Pattern> patternChoice;
-	/**
-	 * Textfield con info generiche sull'automa
-	 */
 	@FXML
 	private TextField infoTextField;
-	/**
-	 * VBox in cui vengono inseriti i grafici
-	 */
 	@FXML
 	private VBox graphVBox;
-	/**
-	 * Button per salvataggio
-	 */
 	@FXML
 	private Button saveButton;
 
-	/**
-	 * Simulazione
-	 */
-	private SimulationThread<T> simulation;
+	private SimulationThread<GOLCellType> simulation;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void setSimulation(SimulationThread<T> simulation) {
+	public void setSimulation(SimulationThread<GOLCellType> simulation) {
 		this.simulation = simulation;
 		this.simulation.setGuiController(this);
 		ObservableList list = FXCollections.observableArrayList(simulation.getPatterns());
@@ -146,36 +112,16 @@ public class SimulationController<T extends CellType> implements Initializable {
 		});
 	}
 
-	/**
-	 * Metodo per ottenere il label della generazione
-	 * 
-	 * @return label della generazione
-	 */
 	public Label getGenerationLabel() {
 		return generationLabel;
 	}
 
-	/**
-	 * Metodo per settare le informazioni generiche su la simulazione
-	 * 
-	 * @param s
-	 *            informazioni in formato Stringa
-	 */
 	public void setSimulationInfo(String s) {
 		infoTextField.setText(s + "\n");
 	}
 
-	/**
-	 * Metodo per ottenere il VBox dei grafici
-	 * 
-	 * @return VBox con i grafici
-	 */
 	public VBox getGraphVBox() {
 		return graphVBox;
-	}
-
-	public void disableSave() {
-		saveButton.setDisable(true);
 	}
 
 }

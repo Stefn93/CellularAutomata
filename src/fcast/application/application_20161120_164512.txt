@@ -1,6 +1,0 @@
-WARNING - 16:45:12: First conversion pass
-ERROR - 16:45:12: org.xml.sax.SAXParseExceptionpublicId: /CellularAutomata/src/fcast/application/SimulationApplication.java; systemId: file:///CellularAutomata/src/fcast/application/SimulationApplication.java; lineNumber: 1; columnNumber: 1; Il contenuto non è consentito nel prologo.
-ERROR - 16:45:12: org.xml.sax.SAXParseExceptionpublicId: /CellularAutomata/src/fcast/application/SimulationApplication.java; systemId: file:///CellularAutomata/src/fcast/application/SimulationApplication.java; lineNumber: 1; columnNumber: 1; Il contenuto non è consentito nel prologo.
-WARNING - 16:45:32: Convert fcast.application
-WARNING - 16:45:32: First conversion pass
-ERROR - 16:45:32: java.net.MalformedURLException: unknown protocol: pathmap
