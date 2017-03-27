@@ -17,11 +17,30 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.Axis;
 import javafx.scene.chart.LineChart;
 
+/**
+ * Classe astratta che implementa alcuni metodi validi per ogni grafico
+ *
+ * @param <T>
+ *            tipo di cella presente nella simulazione
+ */
 public abstract class SimulationChart<T extends CellType> extends LineChart<Integer, Integer>
 		implements CellularAutomatonChart {
 
+	/**
+	 * Lista degli stati della simulazione
+	 */
 	protected StateList<T> states;
 
+	/**
+	 * Costruttore del grafico
+	 * 
+	 * @param xAxis
+	 *            Asse delle ascisse
+	 * @param yAxis
+	 *            Asse delle ordinate
+	 * @param states
+	 *            Lista degli stati
+	 */
 	public SimulationChart(Axis xAxis, Axis yAxis, StateList<T> states) {
 		super(xAxis, yAxis);
 		this.states = states;
@@ -33,22 +52,30 @@ public abstract class SimulationChart<T extends CellType> extends LineChart<Inte
 	@Override
 	public void save(String dataName, String imgName) throws IOException {
 		PrintWriter printout = new PrintWriter(new BufferedWriter(new FileWriter(dataName)));
-		int max, min;
+		int max;
+		int min;
+		int sum;
+		int gen;
+		double avg;
+		int y;
+		ObservableList<Data<Integer, Integer>> esempi;
 		for (Series s : this.getData()) {
 			max = Integer.MIN_VALUE;
 			min = Integer.MAX_VALUE;
 			printout.println(s.getName() + " :\n");
-			int sum = 0;
-			double avg = 0;
-			int gen = 1;
-			ObservableList<Data<Integer, Integer>> esempi = s.getData();
+			sum = 0;
+			avg = 0;
+			gen = 1;
+			esempi = s.getData();
 			for (Data<Integer, Integer> d : esempi) {
-				int y = d.getYValue();
+				y = d.getYValue();
 				sum += y;
-				if (y > max)
+				if (y > max) {
 					max = y;
-				if (y < min)
+				}
+				if (y < min) {
 					min = y;
+				}
 				gen = d.getXValue();
 				printout.println("\t<generation>" + gen + "<.generation>" + " \t <population>" + y + "<.population>");
 			}
